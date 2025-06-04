@@ -1,44 +1,47 @@
 function toggleMenu() {
-    const menu = document.getElementById('navList');
-    if (menu.style.display === 'flex') {
-        menu.style.display = 'none';
-    } else {
-        menu.style.display = 'flex';
+    var wind_width = window.innerWidth;
+    if (wind_width <= 900) {
+        const menu = document.getElementById('navList');
+        if (menu.style.display === 'flex') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.display = 'flex';
+        }
     }
 }
 
-const headersPJC = ["Vehicle No", "Job Card", "Customer Name", "Contact",    "Fuel Type", "Model", "Technician", "Status", "Remarks", "Date"];
+const headersPJC = ["Vehicle No", "Job Card", "Customer Name", "Contact", "Fuel Type", "Model", "Technician", "Status", "Remarks", "Date"];
 document.querySelectorAll("#PJCT_table tr").forEach(row => {
     row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersPJC[i]+':');
+        td.setAttribute("data-label", headersPJC[i] + ':');
     });
 });
 
 const headersTecW = ["Vehicle No", "Job Card", "Customer Name", "Contact", "Fuel Type", "Model", "Technician", "Start Time"];
 document.querySelectorAll("#technicianWorking_table tr").forEach(row => {
     row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersTecW[i]+':');
+        td.setAttribute("data-label", headersTecW[i] + ':');
     });
 });
 
 const headersUnderW = ["Vehicle No", "Job Card", "Customer Name", "Model", "Technician", "Start", "Pause", "Complete"];
 document.querySelectorAll("#underWorking_table tr").forEach(row => {
     row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersUnderW[i]+':');
+        td.setAttribute("data-label", headersUnderW[i] + ':');
     });
 });
 
-const headersPendS = ["Vehicle No", "Job Card", "Customer Name", "Type","Model", "Technician", "Status", "Remarks", "Exp Del date"];
+const headersPendS = ["Vehicle No", "Job Card", "Customer Name", "Type", "Model", "Technician", "Status", "Remarks", "Exp Del date"];
 document.querySelectorAll("#pendingServices_table tr").forEach(row => {
     row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersPendS[i]+':');
+        td.setAttribute("data-label", headersPendS[i] + ':');
     });
 });
 
-const headersAdvC = ["Vehicle No", "Job Card", "Customer Name", "Type","Model", "Remarks", "Exp Del date", "Update"];
+const headersAdvC = ["Vehicle No", "Job Card", "Customer Name", "Type", "Model", "Remarks", "Exp Del date", "Update"];
 document.querySelectorAll("#AdvisorChecking_table tr").forEach(row => {
     row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersAdvC[i]+':');
+        td.setAttribute("data-label", headersAdvC[i] + ':');
     });
 });
 
@@ -54,7 +57,7 @@ function FilterPendingJobCard() {
     var tbody = document.getElementById('PJCT_table');
     var trs = tbody.getElementsByTagName('tr');
 
-    for (var i = 0; i < trs.length; i++) { 
+    for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td');
         if (!tds.length) continue;
 
@@ -82,7 +85,7 @@ function FiltertechnicianWorking() {
     var tbody = document.getElementById('technicianWorking_table');
     var trs = tbody.getElementsByTagName('tr');
 
-    for (var i = 0; i < trs.length; i++) { 
+    for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td');
         if (!tds.length) continue;
 
@@ -145,14 +148,14 @@ function FilterPendS() {
     }
 }
 
-function closeAdvisorUpdate(){
+function closeAdvisorUpdate() {
     document.getElementsByClassName('advisorUpdate')[0].style.display = 'none'
 }
-function openAdvisorUpdate(jcNo){
+function openAdvisorUpdate(jcNo) {
     document.getElementsByClassName('advisorUpdate')[0].style.display = '';
     document.getElementById('JcNumberAdvUpdate').value = jcNo;
 }
-function Navpages(page){
+function Navpages(page) {
     var homePage = document.getElementById('homePage');
     var PendingJob = document.getElementById('PendingJob');
     var TechnicianWorking = document.getElementById('TechnicianWorking');
@@ -167,26 +170,27 @@ function Navpages(page){
     PendingServices.style.display = 'none';
     AdvisorChecking.style.display = 'none';
 
-     document.getElementById('homePage'+'nav').classList.remove('active');
-     document.getElementById('PendingJob'+'nav').classList.remove('active');
-     document.getElementById('TechnicianWorking'+'nav').classList.remove('active');
-     document.getElementById('UnderWorking'+'nav').classList.remove('active');
-     document.getElementById('PendingServices'+'nav').classList.remove('active');
-     document.getElementById('AdvisorChecking'+'nav').classList.remove('active');
+    document.getElementById('homePage' + 'nav').classList.remove('active');
+    document.getElementById('PendingJob' + 'nav').classList.remove('active');
+    document.getElementById('TechnicianWorking' + 'nav').classList.remove('active');
+    document.getElementById('UnderWorking' + 'nav').classList.remove('active');
+    document.getElementById('PendingServices' + 'nav').classList.remove('active');
+    document.getElementById('AdvisorChecking' + 'nav').classList.remove('active');
 
-    document.getElementById(page).style.display='';
-    document.getElementById(page+'nav').classList.add('active');
+    document.getElementById(page).style.display = '';
+    document.getElementById(page + 'nav').classList.add('active');
+    toggleMenu();
 }
 
-document.getElementById('myform').addEventListener('submit',function(e){
+document.getElementById('myform').addEventListener('submit', function (e) {
     e.preventDefault();
     var userid = document.getElementById('userid-log').value;
     var passwordlog = document.getElementById('password-log').value;
-    if(userid == '10069' && passwordlog == '1242' ){
-        document.getElementById('login-page').style.display='none'
+    if (userid == '10069' && passwordlog == '1242') {
+        document.getElementById('login-page').style.display = 'none'
         document.getElementById('mainPage').style.display = '';
         document.getElementById('myform').reset();
-    }else{
+    } else {
         document.getElementById('login-page-cred').style.display = '';
     }
 })
