@@ -1,0 +1,616 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #f2f2f2;
+    height: 100vh;
+}
+
+.login-page {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.loginHeader {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.loginHeader h3 {
+    margin-bottom: 8px;
+    color: #007BFF;
+}
+
+.loginform-wrapper form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formcontainer {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formcontainer label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #555;
+}
+
+.formcontainer input[type="text"],
+.formcontainer input[type="password"] {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.formcontainer input[type="text"]:focus,
+.formcontainer input[type="password"]:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+.formcontainer input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.formcontainer input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+.HeaderPages {
+    width: 100vw;
+    height: 40px;
+    background: #18558B;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    overflow: none;
+}
+
+.HeaderPages .menu-toggle {
+    display: none;
+}
+
+.HeaderPages h3 {
+    font-size: 18px;
+    line-height: 40px;
+    margin-left: 25px;
+    color: white;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.HeaderPages h3:hover {
+    color: yellow;
+    margin-left: 28px;
+}
+
+.HeaderPages ul {
+    display: flex;
+    line-height: 40px;
+    gap: 20px;
+    margin-right: 25px;
+}
+
+.HeaderPages ul li {
+    list-style: none;
+}
+
+.HeaderPages ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+    transition: 0.5s;
+}
+
+.HeaderPages ul li a:after {
+    content: '';
+    background: white;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    transition: 0.7s;
+    height: 2px;
+}
+
+.HeaderPages ul li a:hover:after {
+    width: 90%;
+}
+
+.HeaderPages ul li a:hover {
+    color: #dfdede;
+}
+
+main {
+    position: relative;
+}
+
+.mainContent {
+    width: 95vw;
+    max-width: 2000px;
+    height: calc(100vh - 50px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.mainContent::-webkit-scrollbar {
+    display: none;
+}
+
+.pending-job-card-table-content {
+    position: relative;
+    padding: 5px 10px;
+}
+
+.pending-job-card-table-content table {
+    border-collapse: collapse;
+    background: rgb(255, 252, 252);
+    width: 100%;
+    margin-top: 10px;
+    border: 1px solid #4090d6;
+    text-align: left;
+    position: relative;
+}
+
+.pending-job-card-table-content table thead tr th {
+    background: #4090d6;
+    color: white;
+    padding: 2px 3px;
+    position: sticky;
+    top: -1px;
+    min-width: 100px;
+}
+
+.pending-job-card-table-content table tbody tr td {
+    padding: 5px 3px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(64, 144, 214, 0.5);
+    min-width: 100px;
+}
+
+.pending-job-card-table-content table tbody tr:hover {
+    background: #f5faff;
+}
+
+.dropdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 100%;
+    gap: 10px;
+    padding: 10px;
+}
+
+.dropdown .dropdown-section {
+    padding: 5px 10px;
+    box-shadow: 0px 4px 8px #4090d6;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown .dropdown-section label {
+    background: #4090d6;
+    color: white;
+    text-align: center;
+    padding: 2px 0px;
+    border: 1px solid #4090d6;
+}
+
+.dropdown .dropdown-section input,
+.dropdown .dropdown-section select {
+    border: 1px solid #4090d6;
+    padding: 5px 5px;
+    color: #4090d6;
+    font-weight: bold;
+    outline: none;
+}
+
+
+#underWorking_table thead tr th:nth-child(8),
+#underWorking_table thead tr th:nth-child(9),
+#underWorking_table tbody tr td:nth-child(8),
+#underWorking_table tbody tr td:nth-child(9) {
+    display: none;
+}
+
+#underWorking_table tbody tr td:nth-child(7) input,
+#underWorking_table tbody tr td:nth-child(8) input,
+#underWorking_table tbody tr td:nth-child(9) input {
+    width: 90%;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+    background: transparent;
+}
+
+#underWorking_table tbody tr td:nth-child(7) input {
+    border: 1px solid #4090d6;
+}
+
+#underWorking_table tbody tr td:nth-child(8) input {
+    border: 1px solid #d66a40;
+}
+
+#underWorking_table tbody tr td:nth-child(9) input {
+    border: 1px solid #017c0c;
+}
+
+#underWorking_table tbody tr td:nth-child(7) input:hover {
+    background: #4090d6;
+}
+
+#underWorking_table tbody tr td:nth-child(8) input:hover {
+    background: #d66a40;
+}
+
+#underWorking_table tbody tr td:nth-child(9) input:hover {
+    background: #017c0c;
+}
+
+#underWorking_table tbody tr td:nth-child(7) input:hover,
+#underWorking_table tbody tr td:nth-child(8) input:hover,
+#underWorking_table tbody tr td:nth-child(9) input:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-left: 2px;
+    color: white;
+}
+
+#underWorking_table tbody tr:hover {
+    background: transparent;
+}
+
+#PJCT_table tr td input,
+#PJCT_table tr td select {
+    width: 100%;
+    height: 25px;
+    box-sizing: border-box;
+    display: block;
+    border: 1px solid rgba(64, 144, 214, 0.5);
+    outline: none;
+    color: #007BFF;
+    font-weight: bold;
+    padding: 0px 0px 0px 5px;
+}
+
+#PJCT_table tr td input:focus,
+#PJCT_table tr td select:focus {
+    background-color: rgba(64, 144, 214, 0.1);
+}
+
+.selected {
+    outline: 2px solid #007bff;
+    background-color: #e0f0ff;
+}
+
+.HeaderPages ul li.active {
+    background: #84b6e2;
+    padding: 0px 10px;
+    line-height: 40px;
+}
+
+.HeaderPages ul li.active a:after {
+    width: 90%;
+}
+
+#AdvisorChecking_tbody tr td input[type="button"] {
+    background: #f1f6fa;
+    border: 1px solid #24A0ED;
+    text-align: center;
+    width: 90%;
+    padding: 3px 10px;
+    border-radius: 5px;
+    color: white;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+    color: #24A0ED;
+    cursor: pointer;
+}
+
+#AdvisorChecking_tbody tr td input[type="button"]:hover {
+    transform: translateX(3px);
+    background: #24A0ED;
+    color: white;
+}
+
+.advisorUpdate {
+    width: 100%;
+    height: 90vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    z-index: 2;
+}
+
+.advisorUpdate .formbox {
+    width: 300px;
+    height: 500px;
+    background: rgba(255, 255, 255, 1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    border: 1px solid #24A0ED;
+    position: relative;
+}
+
+.advisorUpdate .formbox h3 {
+    color: #18558B;
+    font-size: 15px;
+    text-align: center;
+    padding: 10px 0px;
+    display: block;
+    border-bottom: 1px solid #18558B;
+    margin-bottom: 10px;
+}
+
+.form-Container-update-Advisor {
+    height: 100%;
+    width: 100%;
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); */
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-Container-update-Advisor label {
+    background: #18558B;
+    color: white;
+    padding: 5px 0px;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.8);
+    padding-left: 10px;
+    font-size: 13px;
+}
+
+.form-Container-update-Advisor input,
+.form-Container-update-Advisor select {
+    height: 35px;
+    text-align: left;
+    border: 1px solid #18558B;
+    padding-left: 10px;
+    outline: none;
+}
+
+.form-Container-update-Advisor input:focus,
+.form-Container-update-Advisor select:focus {
+    box-shadow: 0px 2px 4px #18558B;
+}
+
+.form-Container-update-Advisor input[type="submit"] {
+    position: absolute;
+    bottom: 10px;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    background: #84b6e2;
+    transition: 0.3s;
+}
+
+.form-Container-update-Advisor input[type="submit"]:hover {
+    background: #24A0ED;
+    cursor: pointer;
+    transform: translateX(-49%);
+}
+
+.fa-xmark {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: red;
+    font-weight: bolder;
+    font-size: 22px;
+    text-shadow: 0px 1px 2px rgba(255, 0, 0, 1);
+    cursor: pointer;
+}
+.fa-right-from-bracket{
+    font-size: 22px;
+}
+.login-page-cred{
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media (max-width: 1100px) {
+    .mainContent {
+        width: 100vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .login-page {
+        padding: 20px;
+    }
+
+    .loginHeader h3 {
+        font-size: 18px;
+    }
+
+    .HeaderPages ul {
+        display: none;
+        flex-direction: column;
+        height: calc(100vh - 40px);
+        gap: 0px;
+        width: 250px;
+        padding: 10px;
+        padding-left: 20px;
+        padding-top: 35px;
+        margin-right: 0px;
+        background: #A1C6E1;
+        margin-top: 40px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        z-index: 1;
+    }
+
+    .HeaderPages ul li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        margin-top: 10px;
+        line-height: 40px;
+        cursor: pointer;
+        padding-left: 5px;
+        transition: 0.3s;
+    }
+
+    .HeaderPages ul li.active {
+        background: #18558B;
+    }
+
+    .HeaderPages ul li.active a:after {
+        width: 90%;
+    }
+
+    .HeaderPages ul li:hover {
+        background: #4090d6;
+    }
+
+    .HeaderPages .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        font-size: 25px;
+        color: white;
+        text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .HeaderPages .menu-toggle:hover {
+        right: 12px;
+    }
+
+    .pending-job-card-table-content table thead tr th {
+        display: none;
+    }
+
+    .pending-job-card-table-content table tbody tr {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .pending-job-card-table-content table tbody tr td {
+        border: none;
+        padding: 1px 5px;
+        text-align: right;
+        position: relative;
+        padding-right: 5px;
+        border: 1px solid #dddddd;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .pending-job-card-table-content table tbody tr td::before {
+        content: attr(data-label);
+        white-space: nowrap;
+        text-align: left;
+        width: 50%;
+        margin-right: 5px;
+        color: #242323;
+        position: absolute;
+        left: 5px;
+        background: #dddddd;
+    }
+
+    .pending-job-card-table-content table tbody tr:hover {
+        background: transparent;
+    }
+
+    .pending-job-card-table-content table tbody tr td:hover {
+        background: #dddddd;
+    }
+
+    #underWorking_table tbody tr td:nth-child(7) input {
+        background: #4090d6;
+        max-width: 100px;
+        align-items: center;
+        color: white;
+    }
+
+    #underWorking_table tbody tr td:nth-child(8) input {
+        background: #d66a40;
+        color: white;
+        max-width: 100px;
+        align-items: center;
+    }
+
+    #underWorking_table tbody tr td:nth-child(9) input {
+        background: #017c0c;
+        align-items: center;
+        color: white;
+        max-width: 100px;
+    }
+
+    #PJCT_table tr td input,
+    #PJCT_table tr td select {
+        width: 45%;
+        font-weight: normal;
+
+    }
+
+    #AdvisorChecking_tbody tr td input[type="button"] {
+        background: #24A0ED;
+        width: 45%;
+        color: white;
+    }
+
+    .form-Container-update-Advisor input[type="submit"] {
+        background: #24A0ED;
+    }
+
+    .form-Container-update-Advisor input[type="submit"]:hover {
+        transform: translateX(-49%);
+    }
+
+
+}
+
+@media (max-width: 480px) {
+    .login-page {
+        padding: 20px;
+    }
+
+    .loginHeader h3 {
+        font-size: 18px;
+    }
+}
