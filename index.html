@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="login-page" id="login-page">
+    <div class="login-page" id="login-page" style="display: none;">
         <div class="loginHeader">
             <h3>Global Autocraft LLP</h3>
             <h4>Login Form</h4>
@@ -26,20 +26,21 @@
                     <input id="password-log" type="password" required>
                 </div>
                 <div class="formcontainer">
-                    <input type="submit"  required>
+                    <input type="submit" required>
                 </div>
                 <span class="login-page-cred" id="login-page-cred" style="display: none;">Wrong Credentials!</span>
             </form>
         </div>
     </div>
-    <main id="mainPage" style="display: none;">
+    <main id="mainPage">
         <nav class="HeaderPages">
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <h3>Global Autocraft LLP</h3>
-            <ul id="navList">
-                <li class="active"   onclick="Navpages('homePage')" id="homePagenav" ><a href="#">Home</a></li>
+            <ul id="navList" style="right: -250px;">
+                <li class="active" onclick="Navpages('homePage')" id="homePagenav"><a href="#">Home</a></li>
                 <li onclick="Navpages('PendingJob')" id="PendingJobnav"><a href="#">Pending JC</a></li>
-                <li onclick="Navpages('TechnicianWorking')" id="TechnicianWorkingnav"><a href="#">Technician Working</a></li>
+                <li onclick="Navpages('TechnicianWorking')" id="TechnicianWorkingnav"><a href="#">Technician Working</a>
+                </li>
                 <li onclick="Navpages('UnderWorking')" id="UnderWorkingnav"><a href="#">Under Services</a></li>
                 <li onclick="Navpages('PendingServices')" id="PendingServicesnav"><a href="#">Pending Services</a></li>
                 <li onclick="Navpages('AdvisorChecking')" id="AdvisorCheckingnav"><a href="#">Advisor Checking</a></li>
@@ -48,10 +49,10 @@
             </ul>
         </nav>
         <div class="mainContent">
-            <div class="homePage" data-card="homePage" id="homePage" >
+            <div class="homePage" data-card="homePage" id="homePage">
                 <br><br><br>
                 <h3>Pending for Design for Home Page</h3>
-                
+
             </div> <!-- Home Page Close Here  -->
             <div class="pending-job-card-table" data-card="PendingJob" id="PendingJob" style="display: none;">
                 <div class="dropdown">
@@ -142,7 +143,7 @@
                                 <th>Exp Del Date</th>
                             </tr>
                         </thead>
-                        <tbody id="PJCT_table">
+                        <tbody id="PJCT_tbody">
                             <tr>
                                 <td>KA01AB1234</td>
                                 <td>37467</td>
@@ -311,13 +312,1243 @@
                                 <td><input type="text" id="remarksPJCT7"></td>
                                 <td><input type="date" id="ExpDatePJCT7"></td>
                             </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN7181</td>
+                                <td>37473</td>
+                                <td>Vikram Shetty</td>
+                                <td>9111122233</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td><select id="techcianPJCT7">
+                                        <option value=""></option>
+                                        <option>Ajay</option>
+                                        <option>Kiran</option>
+                                        <option>Rakesh</option>
+                                        <option>Ravi</option>
+                                    </select></td>
+                                <td><select id="servicesPJCT7">
+                                        <option value=""></option>
+                                        <option>Under Inspection</option>
+                                        <option>Repair in Progress</option>
+                                        <option>Service Pending</option>
+                                        <option>Under Repair</option>
+                                    </select></td>
+                                <td><input type="text" id="remarksPJCT7"></td>
+                                <td><input type="date" id="ExpDatePJCT7"></td>
+                            </tr>
 
                         </tbody>
-
                     </table>
+                    <div class="submitTag">
+                        <div class="submitTag">
+                            <button type="submit">Submit Form</button>
+                        </div>
+                    </div>
                 </div>
             </div> <!-- pending-job-card-table Close Here  -->
-            <div class="pending-job-card-table" data-card="TechnicianWorking" id="TechnicianWorking" style="display: none;">
+
+            <div class="pending-job-card-table" data-card="TechnicianWorking" id="TechnicianWorking"
+                style="display: none;">
                 <div class="dropdown">
                     <div class="dropdown-section">
                         <label for="tecwVehicleNo">Vehicle No</label>
@@ -1017,6 +2248,7 @@
                     </table>
                 </div>
             </div> <!-- Pending Services Close here  -->
+
             <div class="pending-job-card-table" data-card="AdvisorChecking" id="AdvisorChecking" style="display: none;">
                 <div class="dropdown">
                     <div class="dropdown-section">
@@ -1103,7 +2335,7 @@
                                 <td>TVS IQUBE ST</td>
                                 <td>Na</td>
                                 <td>23-May-2025</td>
-                                <td><input type="button" onclick="openAdvisorUpdate('37469')" value="Update"></td>
+                                <td><input type="button" onclick="openAdvisorUpdate('37470')" value="Update"></td>
                             </tr>
                             <tr>
                                 <td>KA05IJ1415</td>
@@ -1113,7 +2345,7 @@
                                 <td>TVS NTORQ</td>
                                 <td>Na</td>
                                 <td>23-May-2025</td>
-                                <td><input type="button" onclick="openAdvisorUpdate('37469')" value="Update"></td>
+                                <td><input type="button" onclick="openAdvisorUpdate('37471')" value="Update"></td>
                             </tr>
                             <tr>
                                 <td>KA06KL1617</td>
@@ -1123,7 +2355,7 @@
                                 <td>TVS IQUBE</td>
                                 <td>Na</td>
                                 <td>23-May-2025</td>
-                                <td><input type="button" onclick="openAdvisorUpdate('37469')" value="Update"></td>
+                                <td><input type="button" onclick="openAdvisorUpdate('37472')" value="Update"></td>
                             </tr>
                             <tr>
                                 <td>KA07MN1819</td>
@@ -1133,7 +2365,7 @@
                                 <td>TVS VICTOR</td>
                                 <td>Na</td>
                                 <td>23-May-2025</td>
-                                <td><input type="button" onclick="openAdvisorUpdate('37469')" value="Update"></td>
+                                <td><input type="button" onclick="openAdvisorUpdate('37473')" value="Update"></td>
                             </tr>
                             <tr>
                                 <td>KA08OP2021</td>
@@ -1143,7 +2375,7 @@
                                 <td>TVS IQUBE S</td>
                                 <td>Na</td>
                                 <td>23-May-2025</td>
-                                <td><input type="button" onclick="openAdvisorUpdate('37469')" value="Update"></td>
+                                <td><input type="button" onclick="openAdvisorUpdate('37474')" value="Update"></td>
                             </tr>
                             <tr>
                                 <td>KA09QR2223</td>
@@ -1153,7 +2385,7 @@
                                 <td>TVS SCOOTY PEP</td>
                                 <td>Na</td>
                                 <td>23-May-2025</td>
-                                <td><input type="button" onclick="openAdvisorUpdate('37469')" value="Update"></td>
+                                <td><input type="button" onclick="openAdvisorUpdate('37475')" value="Update"></td>
                             </tr>
                             <tr>
                                 <td>KA10ST2425</td>
@@ -1163,7 +2395,7 @@
                                 <td>TVS IQUBE Z</td>
                                 <td>Na</td>
                                 <td>23-May-2025</td>
-                                <td><input type="button" onclick="openAdvisorUpdate('37469')" value="Update"></td>
+                                <td><input type="button" onclick="openAdvisorUpdate('37476')" value="Update"></td>
                             </tr>
 
                         </tbody>
@@ -1184,44 +2416,73 @@
     <div class="advisorUpdate" style="display: none;">
         <div class="formbox">
             <h3>Update Action</h3>
-            <form id="updateLines">
+            <form id="updateLines_AdvisorApproval">
                 <div class="form-Container-update-Advisor">
                     <label for="JcNumberAdvUpdate">JC Number</label>
-                    <input type="text" id="JcNumberAdvUpdate" value="2541">
+                    <input type="text" id="JcNumberAdvUpdate" required value="">
                 </div>
                 <div class="form-Container-update-Advisor">
                     <label for="StatusAdvUpdate">Is Vehicle Completly Ready?</label>
-                    <select  id="StatusAdvUpdate">
+                    <select id="StatusAdvUpdate" required onchange="AdvisorUpdateSubmitParam()">
                         <option value=""></option>
                         <option>Yes</option>
                         <option>No</option>
                     </select>
                 </div>
-                <div class="form-Container-update-Advisor">
+                <div class="form-Container-update-Advisor"  style="display: none;" id="paramUpdateAction1">
                     <label for="WAintegrationAdvUpdate">Do you want to Send Whatsapp to Customer?</label>
-                    <select  id="WAintegrationAdvUpdate">
+                    <select id="WAintegrationAdvUpdate">
                         <option value=""></option>
                         <option>Yes</option>
                         <option>No</option>
                     </select>
                 </div>
-                <div class="form-Container-update-Advisor">
+                <div class="form-Container-update-Advisor" style="display: none;" id="paramUpdateAction2">
                     <label for="calledtoClientAdvUpdate">Have you called to Customer?</label>
-                    <select  id="calledtoClientAdvUpdate">
+                    <select id="calledtoClientAdvUpdate">
                         <option value=""></option>
                         <option>Yes</option>
                         <option>No</option>
                     </select>
                 </div>
-                <div class="form-Container-update-Advisor">
+                <div class="form-Container-update-Advisor"  style="display: none;" id="paramUpdateAction3">
                     <label for="ExpdateAdvUpdate">Expected Delivery Time?</label>
                     <input type="date" id="ExpdateAdvUpdate">
                 </div>
+
                 <div class="form-Container-update-Advisor">
-                    <input type="submit" value="Submit" >
+                    <input type="submit" value="Submit">
                 </div>
             </form>
             <i class="fa-solid fa-xmark" onclick="closeAdvisorUpdate()"></i>
+        </div>
+    </div>
+    <div class="advisorUpdate" style="display: none;">
+        <div class="formbox">
+            <h3>Pause Reasons</h3>
+            <form id="pauseReasons">
+                <div class="form-Container-update-Advisor">
+                    <label for="JcNumberpauseReasons">JC Number</label>
+                    <input type="text" id="JcNumberpauseReasons" value="2541">
+                </div>
+                <div class="form-Container-update-Advisor">
+                    <label for="pauseReasons_reasons">Is Vehicle Completly Ready?</label>
+                    <select id="pauseReasons_reasons">
+                        <option value=""></option>
+                        <option>Parts Not Available</option>
+                        <option>Pending from Floor Manager</option>
+                        <option>Pending from Customer</option>
+                    </select>
+                </div>
+                <div class="form-Container-update-Advisor">
+                    <label for="pauseReasons_remarks">Remarks</label>
+                    <input type="text" id="pauseReasons_remarks" required>
+                </div>
+                <div class="form-Container-update-Advisor">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+            <i class="fa-solid fa-xmark" onclick="closePauseReasons()"></i>
         </div>
     </div>
 
