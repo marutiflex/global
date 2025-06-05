@@ -8,6 +8,7 @@
 body {
     background: #f2f2f2;
     height: 100vh;
+    overflow: hidden;
 }
 
 .login-page {
@@ -171,8 +172,39 @@ main {
 }
 
 .pending-job-card-table-content {
-    position: relative;
     padding: 5px 10px;
+}
+
+.submitTag {
+    width: 100%;
+    height: 40px;
+    background: #fff;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 25px;
+    box-shadow: 0px -2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.submitTag button {
+    width: 200px;
+    height: 35px;
+    border-radius: 15px;
+    border: none;
+    background: #18558B;
+    border: 1px solid #4090d6;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submitTag button:hover {
+    transform: translateX(3px);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .pending-job-card-table-content table {
@@ -238,10 +270,9 @@ main {
 }
 
 
-#underWorking_table thead tr th:nth-child(8),
-#underWorking_table thead tr th:nth-child(9),
-#underWorking_table tbody tr td:nth-child(8),
-#underWorking_table tbody tr td:nth-child(9) {
+
+#underWorking_table tbody tr td:nth-child(8) input,
+#underWorking_table tbody tr td:nth-child(9) input {
     display: none;
 }
 
@@ -436,53 +467,49 @@ main {
     text-shadow: 0px 1px 2px rgba(255, 0, 0, 1);
     cursor: pointer;
 }
-.fa-right-from-bracket{
+
+.fa-right-from-bracket {
     font-size: 22px;
 }
-.login-page-cred{
+
+.login-page-cred {
     color: red;
     font-weight: bold;
     text-align: center;
+}
+
+table tr td {
+    font-size: 13px;
 }
 
 @media (max-width: 1100px) {
     .mainContent {
         width: 100vw;
     }
-}
-
-@media (max-width: 900px) {
-    .login-page {
-        padding: 20px;
-    }
-
-    .loginHeader h3 {
-        font-size: 18px;
-    }
 
     .HeaderPages ul {
-        display: none;
+        display: flex;
         flex-direction: column;
         height: calc(100vh - 40px);
         gap: 0px;
         width: 250px;
         padding: 10px;
         padding-left: 20px;
-        padding-top: 35px;
+        padding-top: 0px;
         margin-right: 0px;
         background: #A1C6E1;
         margin-top: 40px;
         position: absolute;
         top: 0px;
-        right: 0px;
         z-index: 1;
+        transition: 0.3s;
     }
 
     .HeaderPages ul li {
         width: 100%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         margin-top: 10px;
-        line-height: 40px;
+        line-height: 30px;
         cursor: pointer;
         padding-left: 5px;
         transition: 0.3s;
@@ -517,9 +544,25 @@ main {
     .HeaderPages .menu-toggle:hover {
         right: 12px;
     }
+}
+
+@media (max-width: 1100px) {
+    .login-page {
+        padding: 20px;
+    }
+
+    .loginHeader h3 {
+        font-size: 18px;
+    }
 
     .pending-job-card-table-content table thead tr th {
         display: none;
+    }
+
+    .pending-job-card-table-content table tbody {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        margin-top: 15px;
     }
 
     .pending-job-card-table-content table tbody tr {
@@ -540,6 +583,20 @@ main {
         justify-content: flex-end;
     }
 
+    .pending-job-card-table-content table tbody tr td:first-child {
+        text-align: center;
+        padding-right: 30%;
+        background: gray;
+        color: white;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    .pending-job-card-table-content table tbody tr td:first-child:hover {
+        background: gray;
+    }
+
+
     .pending-job-card-table-content table tbody tr td::before {
         content: attr(data-label);
         white-space: nowrap;
@@ -549,6 +606,18 @@ main {
         color: #242323;
         position: absolute;
         left: 5px;
+        background: #dddddd;
+    }
+
+    .pending-job-card-table-content table tbody tr td:first-child::before {
+        content: '';
+        white-space: nowrap;
+        text-align: left;
+        width: 0%;
+        margin-right: 0px;
+        color: #242323;
+        position: absolute;
+        left: 0px;
         background: #dddddd;
     }
 
@@ -602,6 +671,11 @@ main {
         transform: translateX(-49%);
     }
 
+    .submitTag {
+        display: flex;
+        justify-content: center;
+
+    }
 
 }
 
