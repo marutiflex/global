@@ -4,8 +4,15 @@ function toggleMenu() {
         const menu = document.getElementById('navList');
         if (menu.style.right !== '-250px') {
             menu.style.right = '-250px';
+            setTimeout(() => {
+                menu.style.display = 'none';
+            }, 200);
+
         } else {
-            menu.style.right = '0';
+            menu.style.display = 'flex';
+            setTimeout(() => {
+                menu.style.right = '0';
+            }, 200);
         }
     }
 }
