@@ -1,11 +1,11 @@
 function toggleMenu() {
     var wind_width = window.innerWidth;
-    if (wind_width <= 900) {
+    if (wind_width <= 1100) {
         const menu = document.getElementById('navList');
-        if (menu.style.display === 'flex') {
-            menu.style.display = 'none';
+        if (menu.style.right !== '-250px') {
+            menu.style.right = '-250px';
         } else {
-            menu.style.display = 'flex';
+            menu.style.right = '0';
         }
     }
 }
@@ -24,7 +24,7 @@ document.querySelectorAll("#technicianWorking_table tr").forEach(row => {
     });
 });
 
-const headersUnderW = ["Vehicle No", "Job Card", "Customer Name", "Model", "Technician", "Start", "Pause", "Complete"];
+const headersUnderW = ["Vehicle No", "Job Card", "Customer Name", "Type", "Model", "Technician", "Start", "Pause", "Complete"];
 document.querySelectorAll("#underWorking_table tr").forEach(row => {
     row.querySelectorAll("td").forEach((td, i) => {
         td.setAttribute("data-label", headersUnderW[i] + ':');
@@ -153,7 +153,19 @@ function closeAdvisorUpdate() {
 }
 function openAdvisorUpdate(jcNo) {
     document.getElementsByClassName('advisorUpdate')[0].style.display = '';
-    document.getElementById('JcNumberAdvUpdate').value = jcNo;
+    var inputtag = document.getElementById('JcNumberAdvUpdate');
+    inputtag.value = jcNo;
+    inputtag.setAttribute('disabled', true)
+    document.getElementById('paramUpdateAction1').style.display = 'none';
+    document.getElementById('paramUpdateAction2').style.display = 'none';
+    document.getElementById('paramUpdateAction3').style.display = 'none';
+    var inputtag1 = document.getElementById('WAintegrationAdvUpdate');
+    var inputtag2 = document.getElementById('calledtoClientAdvUpdate');
+    var inputtag3 = document.getElementById('ExpdateAdvUpdate');
+    inputtag1.value = '';
+    inputtag2.value = '';
+    inputtag3.value = '';
+    document.getElementById('StatusAdvUpdate').value = '';
 }
 function Navpages(page) {
     var homePage = document.getElementById('homePage');
@@ -192,5 +204,139 @@ document.getElementById('myform').addEventListener('submit', function (e) {
         document.getElementById('myform').reset();
     } else {
         document.getElementById('login-page-cred').style.display = '';
+    }
+});
+function logout(){
+     document.getElementById('login-page').style.display = '';
+     document.getElementById('mainPage').style.display = 'none';
+}
+function startingFunction(jcNo) {
+    var trs_underWorking = document.getElementById('underWorking_tbody').getElementsByTagName('tr');
+    var tech = '';
+    for (let i = 0; i < trs_underWorking.length; i++) {
+        var tds = trs_underWorking[i].getElementsByTagName('td');
+        var jcnum_td = tds[1].innerHTML;
+        if (jcnum_td == jcNo) {
+            tech = tds[5].innerHTML;
+        }
+    }
+    for (let i = 0; i < trs_underWorking.length; i++) {
+        var tds = trs_underWorking[i].getElementsByTagName('td');
+        var jcnum_td = tds[1].innerHTML;
+        var tech_td = tds[5].innerHTML;
+
+        if (jcnum_td !== jcNo && tech == tech_td) {
+            trs_underWorking[i].style.display = 'none';
+        } else if (jcnum_td == jcNo) {
+            tds[6].getElementsByTagName('input')[0].style.display = 'none'
+            tds[7].getElementsByTagName('input')[0].style.display = 'block'
+            tds[8].getElementsByTagName('input')[0].style.display = 'block'
+        }
+    }
+}
+function PausingFunction(jcNo) {
+    document.getElementsByClassName('advisorUpdate')[1].style.display = '';
+    var inputID = document.getElementById('JcNumberpauseReasons');
+    inputID.value = jcNo;
+    inputID.setAttribute('disabled', true);
+}
+document.getElementById('pauseReasons').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var jcNo = document.getElementById('JcNumberpauseReasons').value;
+    var trs_underWorking = document.getElementById('underWorking_tbody').getElementsByTagName('tr');
+    var tech = '';
+    for (let i = 0; i < trs_underWorking.length; i++) {
+        var tds = trs_underWorking[i].getElementsByTagName('td');
+        var jcnum_td = tds[1].innerHTML;
+        if (jcnum_td == jcNo) {
+            tech = tds[5].innerHTML;
+        }
+    }
+    for (let i = 0; i < trs_underWorking.length; i++) {
+        var tds = trs_underWorking[i].getElementsByTagName('td');
+        var jcnum_td = tds[1].innerHTML;
+        var tech_td = tds[5].innerHTML;
+
+        if (tech == tech_td) {
+            trs_underWorking[i].style.display = '';
+            tds[6].getElementsByTagName('input')[0].style.display = 'block';
+            tds[7].getElementsByTagName('input')[0].style.display = 'none';
+            tds[8].getElementsByTagName('input')[0].style.display = 'none';
+        }
+    }
+    document.getElementsByClassName('advisorUpdate')[1].style.display = 'none';
+    document.getElementById('pauseReasons').reset();
+})
+function closePauseReasons() {
+    document.getElementsByClassName('advisorUpdate')[1].style.display = 'none';
+}
+
+function CompleteFunction(jcNo) {
+    var trs_underWorking = document.getElementById('underWorking_tbody').getElementsByTagName('tr');
+    var tech = '';
+    for (let i = 0; i < trs_underWorking.length; i++) {
+        var tds = trs_underWorking[i].getElementsByTagName('td');
+        var jcnum_td = tds[1].innerHTML;
+        if (jcnum_td == jcNo) {
+            tech = tds[5].innerHTML;
+        }
+    }
+    for (let i = 0; i < trs_underWorking.length; i++) {
+        var tds = trs_underWorking[i].getElementsByTagName('td');
+        var jcnum_td = tds[1].innerHTML;
+        var tech_td = tds[5].innerHTML;
+
+        if (tech == tech_td) {
+            trs_underWorking[i].style.display = '';
+            tds[6].getElementsByTagName('input')[0].style.display = 'block';
+            tds[7].getElementsByTagName('input')[0].style.display = 'none';
+            tds[8].getElementsByTagName('input')[0].style.display = 'none';
+        }
+    }
+}
+function AdvisorUpdateSubmitParam() {
+    var values = document.getElementById('StatusAdvUpdate').value;
+    var inputtag1 = document.getElementById('WAintegrationAdvUpdate');
+    var inputtag2 = document.getElementById('calledtoClientAdvUpdate');
+    var inputtag3 = document.getElementById('ExpdateAdvUpdate');
+    inputtag1.value = '';
+    inputtag2.value = '';
+    inputtag3.value = '';
+
+    if (values == 'Yes') {
+        document.getElementById('paramUpdateAction1').style.display = '';
+        document.getElementById('paramUpdateAction2').style.display = '';
+        document.getElementById('paramUpdateAction3').style.display = '';
+
+        inputtag1.setAttribute('required', true);
+        inputtag2.setAttribute('required', true);
+        inputtag3.setAttribute('required', true);
+
+    } else {
+        document.getElementById('paramUpdateAction1').style.display = 'none';
+        document.getElementById('paramUpdateAction2').style.display = 'none';
+        document.getElementById('paramUpdateAction3').style.display = 'none';
+
+        inputtag1.removeAttribute('required');
+        inputtag2.removeAttribute('required');
+        inputtag3.removeAttribute('required');
+    }
+}
+document.getElementById('updateLines_AdvisorApproval').addEventListener('submit',function(e){
+    e.preventDefault();
+    var jcNum = document.getElementById('JcNumberAdvUpdate').value;
+    var approvalStatus = document.getElementById('StatusAdvUpdate').value;
+    var whatsappRequired = document.getElementById('WAintegrationAdvUpdate').value;
+    var calledStatus = document.getElementById('calledtoClientAdvUpdate').value;
+    var delTime = document.getElementById('ExpdateAdvUpdate').value;
+    console.log([jcNum,approvalStatus,whatsappRequired,calledStatus,delTime])
+    document.getElementsByClassName('advisorUpdate')[0].style.display ='none';
+
+    var trs = document.getElementById('AdvisorChecking_tbody').getElementsByTagName('tr');
+    for(let i=0 ; i<trs.length;i++){
+        var tds = trs[i].getElementsByTagName('td')[1];
+        if(tds.innerHTML == jcNum){
+            trs[i].style.display = 'none';
+        }
     }
 })
