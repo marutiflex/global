@@ -115,12 +115,19 @@ body {
 .HeaderPages ul {
     display: flex;
     line-height: 40px;
-    gap: 20px;
-    margin-right: 25px;
+    gap: 0px;
+    margin-right: 10px;
 }
 
 .HeaderPages ul li {
     list-style: none;
+    padding: 0px 6px;
+    border-right: 1px solid white;
+}
+.HeaderPages ul li:last-child{
+    border:none ;
+    padding-left:10px ;
+    padding-top: 5px;
 }
 
 .HeaderPages ul li a {
@@ -129,6 +136,7 @@ body {
     font-size: 14px;
     position: relative;
     transition: 0.5s;
+    text-wrap: nowrap;
 }
 
 .HeaderPages ul li a:after {
@@ -260,6 +268,11 @@ main {
     border: 1px solid #4090d6;
 }
 
+.dropdown .dropdown-section.advisorRejected label {
+    background: #d66a40;
+    border: 1px solid #d66a40;
+}
+
 .dropdown .dropdown-section input,
 .dropdown .dropdown-section select {
     border: 1px solid #4090d6;
@@ -269,7 +282,16 @@ main {
     outline: none;
 }
 
+.dropdown .dropdown-section.advisorRejected input,
+.dropdown .dropdown-section.advisorRejected select {
+    border: 1px solid #d66a40;
+    color: #d66a40;
+}
 
+#underWorking_table tbody tr.rejectedUnderWorking td,
+#technicianWorking_table tbody tr.rejectedUnderWorking td {
+    background: rgba(214, 106, 64, 0.3);
+}
 
 #underWorking_table tbody tr td:nth-child(8) input,
 #underWorking_table tbody tr td:nth-child(9) input {
@@ -324,7 +346,9 @@ main {
 }
 
 #PJCT_table tr td input,
-#PJCT_table tr td select {
+#PJCT_table tr td select,
+#RejAdv_table tr td input,
+#RejAdv_table tr td select {
     width: 100%;
     height: 25px;
     box-sizing: border-box;
@@ -337,7 +361,9 @@ main {
 }
 
 #PJCT_table tr td input:focus,
-#PJCT_table tr td select:focus {
+#PJCT_table tr td select:focus,
+#RejAdv_table tr td input:focus,
+#RejAdv_table tr td select:focus {
     background-color: rgba(64, 144, 214, 0.1);
 }
 
@@ -357,7 +383,8 @@ main {
 }
 
 #AdvisorChecking_tbody tr td input[type="button"],
-#PendD_tbody tr td input[type="button"] {
+#PendD_tbody tr td input[type="button"],
+#CallPend_tbody tr td input[type="button"] {
     background: #f1f6fa;
     border: 1px solid #24A0ED;
     text-align: center;
@@ -372,7 +399,8 @@ main {
 }
 
 #AdvisorChecking_tbody tr td input[type="button"]:hover,
-#PendD_tbody tr td input[type="button"]:hover {
+#PendD_tbody tr td input[type="button"]:hover,
+#CallPend_tbody tr td input[type="button"]:hover {
     transform: translateX(3px);
     background: #24A0ED;
     color: white;
@@ -465,11 +493,13 @@ main {
     cursor: pointer;
     transition: 0.2s;
 }
-.advisorUpdate .formboxBig .form-Container-Delivery-Form-footer input:disabled{
+
+.advisorUpdate .formboxBig .form-Container-Delivery-Form-footer input:disabled {
     background: gray;
     cursor: not-allowed;
 }
-.advisorUpdate .formboxBig .form-Container-Delivery-Form-footer input:disabled:hover{
+
+.advisorUpdate .formboxBig .form-Container-Delivery-Form-footer input:disabled:hover {
     transform: translateY(0px);
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 1);
 }
@@ -508,31 +538,34 @@ main {
 
 .form-Container-Delivery-Form label {
     color: #555;
-    font-size:13px ;
+    font-size: 13px;
 }
 
 .form-Container-Delivery-Form input[type="checkbox"] {
     width: 30px;
 }
 
-.sectionForm{
+.sectionForm {
     overflow: auto;
     width: 100%;
     height: 70dvh;
     padding-bottom: 50px;
 }
+
 .paraGray {
     color: rgb(90, 89, 89);
     font-size: 13px;
     padding-top: 3px;
 }
-.questionare .fa-star{
+
+.questionare .fa-star {
     color: gray;
     font-size: 18px;
     margin-top: 10px;
     cursor: pointer;
 }
-.questionare textarea{
+
+.questionare textarea {
     width: 95%;
     height: 60px;
     resize: none;
@@ -545,21 +578,25 @@ main {
     font-size: 14px;
     padding-top: 5px;
 }
-.questionare{
+
+.questionare {
     display: flex;
     justify-content: space-evenly;
     margin-top: 5px;
 }
-.questionare .questionare-divs{
+
+.questionare .questionare-divs {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.questionare .questionare-divs label{
+
+.questionare .questionare-divs label {
     cursor: pointer;
     color: black;
 }
-.questionare .questionare-divs input{
+
+.questionare .questionare-divs input {
     margin-left: 15px;
     width: 20px;
     height: 20px;
@@ -641,15 +678,29 @@ main {
 table tr td {
     font-size: 13px;
 }
-.form-Container-Del-update{
+
+.form-Container-Del-update {
     display: flex;
     justify-content: space-between;
     padding: 10px 30px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-.form-Container-Del-update input{
+.form-Container-Del-update input {
     width: 22px;
+}
+
+#RejAdv_table th,
+#RejSer_table th {
+    background: #d66a40;
+}
+
+#RejAdv_table tbody tr:hover {
+    background: rgba(214, 106, 64, 0.1);
+}
+
+#AdvRejSubmit {
+    background: #d66a40;
 }
 
 @media (max-width: 1100px) {
@@ -677,6 +728,7 @@ table tr td {
 
     .HeaderPages ul li {
         width: 100%;
+        border: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         margin-top: 10px;
         line-height: 30px;
@@ -714,9 +766,9 @@ table tr td {
     .HeaderPages .menu-toggle:hover {
         right: 12px;
     }
-}
 
-@media (max-width: 1100px) {
+
+
     .login-page {
         padding: 20px;
     }
@@ -763,6 +815,10 @@ table tr td {
         transition: 0.3s;
     }
 
+    .pending-job-card-table-content.advisorRejected table tbody tr td:first-child {
+        background: #d66a40;
+    }
+
     .pending-job-card-table-content table tbody tr {
         transition: 0.3s;
     }
@@ -777,10 +833,25 @@ table tr td {
         z-index: 4;
     }
 
-    .pending-job-card-table-content table tbody tr td:first-child:hover {
+    .pending-job-card-table-content table tbody tr:hover td:first-child {
         background: #24A0ED;
     }
 
+    .pending-job-card-table-content.advisorRejected table tbody tr:hover td:first-child {
+        background: #862b07;
+    }
+
+
+
+    #underWorking_table tbody tr.rejectedUnderWorking td,
+    #technicianWorking_table tbody tr.rejectedUnderWorking td {
+        background: white;
+    }
+
+    #underWorking_table tbody tr.rejectedUnderWorking td:first-child,
+    #technicianWorking_table tbody tr.rejectedUnderWorking td:first-child {
+        background: #862b07;
+    }
 
     .pending-job-card-table-content table tbody tr td::before {
         content: attr(data-label);
@@ -834,23 +905,31 @@ table tr td {
         color: white;
         max-width: 100px;
     }
+
     #PJCT_table tr td input,
-    #PJCT_table tr td select {
+    #PJCT_table tr td select,
+    #RejAdv_table tr td input,
+    #RejAdv_table tr td select {
         width: 45%;
         font-weight: normal;
     }
+
     #AdvisorChecking_tbody tr td input[type="button"],
-    #PendD_tbody tr td input[type="button"] {
+    #PendD_tbody tr td input[type="button"],
+    #CallPend_tbody tr td input[type="button"]  {
         background: #24A0ED;
         width: 45%;
         color: white;
     }
+
     .form-Container-update-Advisor input[type="submit"] {
         background: #24A0ED;
     }
+
     .form-Container-update-Advisor input[type="submit"]:hover {
         transform: translateX(-49%);
     }
+
     .submitTag {
         display: flex;
         justify-content: center;
