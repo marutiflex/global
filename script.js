@@ -52,6 +52,12 @@ document.querySelectorAll("#AdvisorChecking_table tr").forEach(row => {
     });
 });
 
+const headersPendD = ["Vehicle No", "Job Card", "Customer Name", "Mobile No", "Type", "Model", "Delivery Time", "Update"];
+document.querySelectorAll("#PendD_table tr").forEach(row => {
+    row.querySelectorAll("td").forEach((td, i) => {
+        td.setAttribute("data-label", headersPendD[i] + ':');
+    });
+});
 
 function FilterPendingJobCard() {
     var vehicleNo = document.getElementById('vehicleNoPJCT').value.toLowerCase();
@@ -181,6 +187,7 @@ function Navpages(page) {
     var UnderWorking = document.getElementById('UnderWorking');
     var PendingServices = document.getElementById('PendingServices');
     var AdvisorChecking = document.getElementById('AdvisorChecking');
+    var AdvisorPendingDelivery = document.getElementById('AdvisorPendingDelivery');
 
     homePage.style.display = 'none';
     PendingJob.style.display = 'none';
@@ -188,6 +195,7 @@ function Navpages(page) {
     UnderWorking.style.display = 'none';
     PendingServices.style.display = 'none';
     AdvisorChecking.style.display = 'none';
+    AdvisorPendingDelivery.style.display = 'none';
 
     document.getElementById('homePage' + 'nav').classList.remove('active');
     document.getElementById('PendingJob' + 'nav').classList.remove('active');
@@ -195,6 +203,7 @@ function Navpages(page) {
     document.getElementById('UnderWorking' + 'nav').classList.remove('active');
     document.getElementById('PendingServices' + 'nav').classList.remove('active');
     document.getElementById('AdvisorChecking' + 'nav').classList.remove('active');
+    document.getElementById('AdvisorPendingDelivery' + 'nav').classList.remove('active');
 
     document.getElementById(page).style.display = '';
     document.getElementById(page + 'nav').classList.add('active');
@@ -213,9 +222,9 @@ document.getElementById('myform').addEventListener('submit', function (e) {
         document.getElementById('login-page-cred').style.display = '';
     }
 });
-function logout(){
-     document.getElementById('login-page').style.display = '';
-     document.getElementById('mainPage').style.display = 'none';
+function logout() {
+    document.getElementById('login-page').style.display = '';
+    document.getElementById('mainPage').style.display = 'none';
 }
 function startingFunction(jcNo) {
     var trs_underWorking = document.getElementById('underWorking_tbody').getElementsByTagName('tr');
@@ -329,21 +338,168 @@ function AdvisorUpdateSubmitParam() {
         inputtag3.removeAttribute('required');
     }
 }
-document.getElementById('updateLines_AdvisorApproval').addEventListener('submit',function(e){
+document.getElementById('updateLines_AdvisorApproval').addEventListener('submit', function (e) {
     e.preventDefault();
     var jcNum = document.getElementById('JcNumberAdvUpdate').value;
     var approvalStatus = document.getElementById('StatusAdvUpdate').value;
     var whatsappRequired = document.getElementById('WAintegrationAdvUpdate').value;
     var calledStatus = document.getElementById('calledtoClientAdvUpdate').value;
     var delTime = document.getElementById('ExpdateAdvUpdate').value;
-    console.log([jcNum,approvalStatus,whatsappRequired,calledStatus,delTime])
-    document.getElementsByClassName('advisorUpdate')[0].style.display ='none';
+    console.log([jcNum, approvalStatus, whatsappRequired, calledStatus, delTime])
+    document.getElementsByClassName('advisorUpdate')[0].style.display = 'none';
 
     var trs = document.getElementById('AdvisorChecking_tbody').getElementsByTagName('tr');
-    for(let i=0 ; i<trs.length;i++){
+    for (let i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td')[1];
-        if(tds.innerHTML == jcNum){
+        if (tds.innerHTML == jcNum) {
             trs[i].style.display = 'none';
         }
     }
+})
+function FilterPendD() {
+    const vehicleNoFilter = document.getElementById("PendDVehicleNo").value.toUpperCase();
+    const typeFilter = document.getElementById("ICEEVPendD").value.toUpperCase();
+    const modelFilter = document.getElementById("ModelPendD").value.toUpperCase();
+
+    const table = document.getElementById("PendD_table");
+    const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+
+    for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName("td");
+        const vehicleNo = cells[0].textContent.toUpperCase();
+        const type = cells[3].textContent.toUpperCase();
+        const model = cells[4].textContent.toUpperCase();
+
+        const matchesVehicleNo = vehicleNo.includes(vehicleNoFilter);
+        const matchesType = !typeFilter || type === typeFilter;
+        const matchesModel = !modelFilter || model === modelFilter;
+
+        if (matchesVehicleNo && matchesType && matchesModel) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
+function updateValue_DelF() {
+    var chec = document.getElementById('DelF_delivery');
+    if (chec.checked) {
+        chec.value = 'Delivered';
+    } else {
+        chec.value = '';
+    }
+}
+function LabelColor(label, status) {
+    var labelTag = document.getElementById(label);
+    if (status == "Yes") {
+        labelTag.style.color = 'Green';
+    } else {
+        labelTag.style.color = 'red';
+    }
+}
+function starSelected(number) {
+    var stars = document.getElementsByName('stars');
+    const col_pat = ['#B71C1C', '#EF6C00', '#F9A825', '#7CB342', '#2E7D32'];
+    document.getElementById('FeedL7_value').innerHTML = number;
+    for (let i = 1; i <= 5; i++) {
+        if (i <= number) {
+            stars[(i - 1)].style.color = col_pat[(i - 1)];
+            document.getElementById('FeedL7').style.color = col_pat[(i - 1)];
+        } else {
+            stars[(i - 1)].style.color = 'gray';
+        }
+    }
+}
+function NextPage() {
+    var chec = document.getElementById('DelF_delivery');
+    if (chec.checked) {
+        var sectionForm = document.getElementsByClassName('sectionForm');
+        sectionForm[0].style.display = 'none';
+        sectionForm[1].style.display = '';
+        document.getElementById('circleCancell').style.display = '';
+        document.getElementById('resetingForm').style.display = '';
+        document.getElementById('nextPageSection').style.display = 'none';
+        document.getElementById('submitbtnForm').removeAttribute('disabled');
+
+
+    } else {
+        alert('Please Select Delivery before Proceed')
+    }
+}
+function ResetExistingForm() {
+    var form = document.getElementById('DeliveryForm')
+    form.reset();
+    document.getElementById('circleCancell').style.display = 'none';
+    document.getElementById('resetingForm').style.display = 'none';
+    document.getElementById('nextPageSection').style.display = '';
+    document.getElementById('submitbtnForm').setAttribute('disabled', true);
+    var label = form.getElementsByTagName('label');
+    var sectionForm = document.getElementsByClassName('sectionForm');
+    sectionForm[1].style.display = 'none';
+    sectionForm[0].style.display = '';
+    document.getElementById('FeedL8').setAttribute('required', true);
+    var iTag = document.getElementById('startssec').getElementsByTagName('i');
+    for (let i = 0; i < iTag.length; i++) {
+        iTag[i].style.color = 'gray';
+    }
+    for (let i = 0; i < label.length; i++) {
+        label[i].style.color = 'gray';
+    }
+}
+function skipingFeedback() {
+    var sectionForm = document.getElementsByClassName('sectionForm');
+    sectionForm[0].style.display = '';
+    sectionForm[1].style.display = 'none';
+    document.getElementById('FeedL8').removeAttribute('required');
+    document.getElementById('circleCancell').style.display = 'none';
+}
+function closeDelD() {
+    document.getElementsByClassName('advisorUpdate')[2].style.display = 'none';
+}
+function PendDUpdate(jcNo){
+    document.getElementsByClassName('advisorUpdate')[2].style.display = '';
+    document.getElementById('JcNumberDelD').innerHTML = jcNo;
+    ResetExistingForm();
+}
+document.getElementById('DeliveryForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var JcNo = Number(document.getElementById('JcNumberDelD').innerHTML);
+    var status = document.getElementById('DelF_delivery').value;
+
+    var feedQ1_value = '';
+    var feedQ1 = document.getElementsByName('feedQ1');
+    if(feedQ1[0].checked){feedQ1_value = 'Yes' }else if(feedQ1[1].checked){feedQ1_value = 'No' };
+
+    var feedQ2_value = '';
+    var feedQ2 = document.getElementsByName('feedQ2');
+    if(feedQ2[0].checked){feedQ2_value = 'Yes' }else if(feedQ2[1].checked){feedQ2_value = 'No' };
+    
+    var feedQ3_value = '';
+    var feedQ3 = document.getElementsByName('feedQ3');
+    if(feedQ3[0].checked){feedQ3_value = 'Yes' }else if(feedQ3[1].checked){feedQ3_value = 'No' };
+        
+    var feedQ4_value = '';
+    var feedQ4 = document.getElementsByName('feedQ4');
+    if(feedQ4[0].checked){feedQ4_value = 'Yes' }else if(feedQ4[1].checked){feedQ4_value = 'No' };
+
+    var feedQ5_value = '';
+    var feedQ5 = document.getElementsByName('feedQ5');
+    if(feedQ5[0].checked){feedQ5_value = 'Yes' }else if(feedQ5[1].checked){feedQ5_value = 'No' };
+    
+    var feedQ6_value = '';
+    var feedQ6 = document.getElementsByName('feedQ6');
+    if(feedQ6[0].checked){feedQ6_value = 'Yes' }else if(feedQ6[1].checked){feedQ6_value = 'No' };
+
+    var FeedL7_value = document.getElementById('FeedL7_value').innerHTML ; 
+    
+    var FeedL8_value =  document.getElementById('FeedL8').value
+
+    if(feedQ1_value=="" || feedQ2_value=="" || feedQ3_value=="" || feedQ4_value=="" || feedQ5_value=="" || feedQ6_value=="" || FeedL7_value=="" || FeedL8_value ==""){
+        alert('Please Fill Necessary Fields')
+    }else{
+        ResetExistingForm();
+        document.getElementsByClassName('advisorUpdate')[2].style.display = 'none';
+        console.log(JcNo,status,feedQ1_value,feedQ2_value,feedQ3_value,feedQ4_value,feedQ5_value,feedQ6_value,FeedL7_value,FeedL8_value)
+    }
+    
 })
