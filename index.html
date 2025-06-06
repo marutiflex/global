@@ -10,12 +10,11 @@
 </head>
 
 <body>
-    <div class="login-page" id="login-page" style="display: none;">
+    <div class="login-page" id="login-page" >
         <div class="loginHeader">
             <h3>Global Autocraft LLP</h3>
             <h4>Login Form</h4>
         </div>
-        
         <div class="loginform-wrapper">
             <form id="myform">
                 <div class="formcontainer">
@@ -33,7 +32,7 @@
             </form>
         </div>
     </div>
-    <main id="mainPage">
+    <main id="mainPage" style="display: none;">
         <nav class="HeaderPages">
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <h3>Global Autocraft LLP</h3>
@@ -45,14 +44,16 @@
                 <li onclick="Navpages('UnderWorking')" id="UnderWorkingnav"><a href="#">Under Services</a></li>
                 <li onclick="Navpages('PendingServices')" id="PendingServicesnav"><a href="#">Pending Services</a></li>
                 <li onclick="Navpages('AdvisorChecking')" id="AdvisorCheckingnav"><a href="#">Advisor Checking</a></li>
-                <li><a href="#">Pending Delivery</a></li>
+                <li onclick="Navpages('AdvisorPendingDelivery')" id="AdvisorPendingDeliverynav"><a href="#">Pending Delivery</a></li>
                 <li onclick="logout()"><a href="#"><i class="fa-solid fa-right-from-bracket"></i></a></li>
             </ul>
         </nav>
         <div class="mainContent">
             <div class="homePage" data-card="homePage" id="homePage">
-                <br><br><br>
-                <h3>Pending for Design for Home Page</h3>
+                <div class="cardformContact">
+
+                </div>            
+                <div class="cardFormFooter"></div>
 
             </div> <!-- Home Page Close Here  -->
             <div class="pending-job-card-table" data-card="PendingJob" id="PendingJob" style="display: none;">
@@ -2405,6 +2406,161 @@
                 </div>
             </div> <!-- Advisor Checking Close here  -->
 
+            <div class="pending-job-card-table" data-card="AdvisorPendingDelivery" id="AdvisorPendingDelivery" style="display: none;">
+                <div class="dropdown">
+                    <div class="dropdown-section">
+                        <label for="PendDVehicleNo">Vehicle No</label>
+                        <input type="text" oninput="FilterPendD()" id="PendDVehicleNo">
+                    </div>
+                    <div class="dropdown-section">
+                        <label for="ICEEVPendD">Type</label>
+                        <select onchange="FilterPendD()" id="ICEEVPendD">
+                            <option value="">--Select Type--</option>
+                            <option>ICE</option>
+                            <option>EV</option>
+                        </select>
+                    </div>
+                    <div class="dropdown-section">
+                        <label for="ModelPendD">Model</label>
+                        <select onchange="FilterPendD()" id="ModelPendD">
+                            <option value="">-- Select Model --</option>
+                            <option value="TVS WEGO BSIV">TVS WEGO BSIV</option>
+                            <option value="TVS IQUBE BSIV">TVS IQUBE BSIV</option>
+                            <option value="TVS APACHE RTR">TVS APACHE RTR</option>
+                            <option value="TVS IQUBE S">TVS IQUBE S</option>
+                            <option value="TVS JUPITER ZX">TVS JUPITER ZX</option>
+                            <option value="TVS IQUBE ST">TVS IQUBE ST</option>
+                            <option value="TVS WEGO">TVS WEGO</option>
+                            <option value="TVS JUPITER">TVS JUPITER</option>
+                            <option value="TVS SCOOTY PEP+">TVS SCOOTY PEP+</option>
+                            <option value="TVS IQUBE">TVS IQUBE</option>
+                            <option value="TVS XL100">TVS XL100</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="pending-job-card-table-content">
+                    <table id="PendD_table">
+                        <thead>
+                            <tr>
+                                <th>Vehicle No.</th>
+                                <th>JC no.</th>
+                                <th>Customer Name</th>
+                                <th>Mobile No</th>
+                                <th>ICE/EV</th>
+                                <th>Model</th>
+                                <th>Delivery Time</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody id="PendD_tbody">
+                            <tr>
+                                <td>KA01AB1234</td>
+                                <td>37467</td>
+                                <td>Ravi Kumar</td>
+                                <td>9845411323</td>
+                                <td>ICE</td>
+                                <td>TVS APACHE RTR</td>
+                                <td>23-May-2025 11:30pm</td>
+                                <td><input type="button" onclick="PendDUpdate('37467')" value="Satus"></td>
+                            </tr>
+                            <tr>
+                                <td>KA02CD5678</td>
+                                <td>37468</td>
+                                <td>Priya Singh</td>
+                                <td>9845411323</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE S</td>
+                                <td>23-May-2025 11:30pm</td>
+                                <td><input type="button" onclick="PendDUpdate('37468')" value="Satus"></td>
+                            </tr>
+                            <tr>
+                                <td>KA03EF9101</td>
+                                <td>37469</td>
+                                <td>Manoj Desai</td>
+                                <td>9845411323</td>
+                                <td>ICE</td>
+                                <td>TVS JUPITER ZX</td>
+                                <td>23-May-2025 11:30pm</td>
+                                <td><input type="button" onclick="PendDUpdate('37469')" value="Satus"></td>
+                            </tr>
+                            <tr>
+                                <td>KA04GH1121</td>
+                                <td>37470</td>
+                                <td>Meena Rao</td>
+                                <td>9845411323</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE ST</td>
+                                <td>23-May-2025 11:30pm</td>
+                                <td><input type="button" onclick="PendDUpdate('37470')" value="Satus"></td>
+                            </tr>
+                            <tr>
+                                <td>KA05IJ1415</td>
+                                <td>37471</td>
+                                <td>Santosh Patil</td>
+                                <td>9845411323</td>
+                                <td>ICE</td>
+                                <td>TVS NTORQ</td>
+                                <td>23-May-2025 11:30pm</td>
+                                <td><input type="button" onclick="PendDUpdate('37471')" value="Satus"></td>
+                            </tr>
+                            <tr>
+                                <td>KA06KL1617</td>
+                                <td>37472</td>
+                                <td>Geeta Naik</td>
+                                <td>9845411323</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE</td>
+                                <td>23-May-2025 11:30pm</td>
+                                <td><input type="button" onclick="PendDUpdate('37472')" value="Satus"></td>
+                            </tr>
+                            <tr>
+                                <td>KA07MN1819</td>
+                                <td>37473</td>
+                                <td>Rakesh Bhat</td>
+                                <td>9845411323</td>
+                                <td>ICE</td>
+                                <td>TVS VICTOR</td>
+                                <td>23-May-2025 11:30pm</td>
+                                <td><input type="button" onclick="PendDUpdate('37473')" value="Satus"></td>
+                            </tr>
+                            <tr>
+                                <td>KA08OP2021</td>
+                                <td>37474</td>
+                                <td>Lata Joshi</td>
+                                <td>9845411323</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE S</td>
+                                <td>23-May-2025 11:30pm</td>
+                                <td><input type="button" onclick="PendDUpdate('37474')" value="Satus"></td>
+                            </tr>
+                            <tr>
+                                <td>KA09QR2223</td>
+                                <td>37475</td>
+                                <td>Sunil Nair</td>
+                                <td>9845411323</td>
+                                <td>ICE</td>
+                                <td>TVS SCOOTY PEP</td>
+                                <td>23-May-2025 11:30pm</td>
+                                <td><input type="button" onclick="PendDUpdate('37475')" value="Satus"></td>
+                            </tr>
+                            <tr>
+                                <td>KA10ST2425</td>
+                                <td>37476</td>
+                                <td>Asha Shetty</td>
+                                <td>9845411323</td>
+                                <td>EV</td>
+                                <td>TVS IQUBE Z</td>
+                                <td>23-May-2025 11:30pm</td>
+                                <td><input type="button" onclick="PendDUpdate('37476')" value="Satus"></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div> <!-- Delivery Pending Close here  -->
+
 
 
 
@@ -2430,7 +2586,7 @@
                         <option>No</option>
                     </select>
                 </div>
-                <div class="form-Container-update-Advisor"  style="display: none;" id="paramUpdateAction1">
+                <div class="form-Container-update-Advisor" style="display: none;" id="paramUpdateAction1">
                     <label for="WAintegrationAdvUpdate">Do you want to Send Whatsapp to Customer?</label>
                     <select id="WAintegrationAdvUpdate">
                         <option value=""></option>
@@ -2446,7 +2602,7 @@
                         <option>No</option>
                     </select>
                 </div>
-                <div class="form-Container-update-Advisor"  style="display: none;" id="paramUpdateAction3">
+                <div class="form-Container-update-Advisor" style="display: none;" id="paramUpdateAction3">
                     <label for="ExpdateAdvUpdate">Expected Delivery Time?</label>
                     <input type="date" id="ExpdateAdvUpdate">
                 </div>
@@ -2484,6 +2640,156 @@
                 </div>
             </form>
             <i class="fa-solid fa-xmark" onclick="closePauseReasons()"></i>
+        </div>
+    </div>
+    <div class="advisorUpdate" style="display: none;">
+        <div class="formboxBig">
+            <h3 id="formType">Delivery Form</h3>
+            <span style="display: none;" id="sectionCount">1</span>
+            <form id="DeliveryForm">
+                <div class="sectionForm">
+                    <div class="form-Container-Del-update">
+                        <label for="JcNumberDelD">JC Number</label>
+                        <span id="JcNumberDelD">1245</span>
+                    </div>
+                    <div class="form-Container-Del-update">
+                        <label for="DelF_delivery">Is Vehicle Delivered to Customer?</label>
+                        <input type="checkbox" id="DelF_delivery" required onclick="updateValue_DelF()">
+                    </div>
+                </div>
+                <div class="sectionForm" style="display: none;">
+                    
+                        <div class="form-Container-Delivery-Form">
+                            <p><strong>Dear Customer</strong></p>
+                            <p class="paraGray">Thank you for getting your vehicle serviced at our workshop we would
+                                like to
+                                know how we performed. Please spare a few moments to give us your valueable feedbak on
+                                the
+                                following as it will help us in improving our services.</p>
+
+                            <p class="subparaStrong"><strong>Please click in a appropriate box.</strong></p>
+                        </div>
+                        <div class="form-Container-Delivery-Form">
+                            <label id="FeedL1">1. Did the service advisor listen attentively to your requests and
+                                understanding the specific problems with your vehicle ? </label>
+
+                            <div class="questionare">
+                                <div class="questionare-divs">
+                                    <label for="feedQ1_1">a) Yes</label><input type="radio" name="feedQ1"
+                                        onclick="LabelColor('FeedL1','Yes')" id="feedQ1_1">
+                                </div>
+                                <div class="questionare-divs">
+                                    <label for="feedQ1_2">b) No</label><input type="radio" name="feedQ1"
+                                        onclick="LabelColor('FeedL1','No')" id="feedQ1_2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-Container-Delivery-Form">
+                            <label id="FeedL2">2. Are you satisfied with repairs carried out on the vehicle this
+                                time?</label>
+
+                            <div class="questionare">
+                                <div class="questionare-divs">
+                                    <label for="feedQ2_1">a) Yes</label><input type="radio" name="feedQ2"
+                                        onclick="LabelColor('FeedL2','Yes')" id="feedQ2_1">
+                                </div>
+                                <div class="questionare-divs">
+                                    <label for="feedQ2_2">b) No</label><input type="radio" name="feedQ2"
+                                        onclick="LabelColor('FeedL2','No')" id="feedQ2_2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-Container-Delivery-Form">
+                            <label id="FeedL3">3. Are you satisfied with quality of washing of your vehicle?</label>
+
+                            <div class="questionare">
+                                <div class="questionare-divs">
+                                    <label for="feedQ3_1">a) Yes</label><input type="radio" name="feedQ3"
+                                        onclick="LabelColor('FeedL3','Yes')" id="feedQ3_1">
+                                </div>
+                                <div class="questionare-divs">
+                                    <label for="feedQ3_2">b) No</label><input type="radio" name="feedQ3"
+                                        onclick="LabelColor('FeedL3','No')" id="feedQ3_2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-Container-Delivery-Form">
+                            <label id="FeedL4">4. Was your vehicle ready/delivered as per promised time given?</label>
+
+                            <div class="questionare">
+                                <div class="questionare-divs">
+                                    <label for="feedQ4_1">a) Yes</label><input type="radio" name="feedQ4"
+                                        onclick="LabelColor('FeedL4','Yes')" id="feedQ4_1">
+                                </div>
+                                <div class="questionare-divs">
+                                    <label for="feedQ4_2">b) No</label><input type="radio" name="feedQ4"
+                                        onclick="LabelColor('FeedL4','No')" id="feedQ4_2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-Container-Delivery-Form">
+                            <label id="FeedL5">5. Were your vehicle old spare parts returned to you?</label>
+
+                            <div class="questionare">
+                                <div class="questionare-divs">
+                                    <label for="feedQ5_1">a) Yes</label><input type="radio" name="feedQ5"
+                                        onclick="LabelColor('FeedL5','Yes')" id="feedQ5_1">
+                                </div>
+                                <div class="questionare-divs">
+                                    <label for="feedQ5_2">b) No</label><input type="radio" name="feedQ5"
+                                        onclick="LabelColor('FeedL5','No')" id="feedQ5_2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-Container-Delivery-Form">
+                            <label id="FeedL6">6. Will you recommend our services center to your friends/family?</label>
+
+                            <div class="questionare">
+                                <div class="questionare-divs">
+                                    <label for="feedQ6_1">a) Yes</label><input type="radio" name="feedQ6"
+                                        onclick="LabelColor('FeedL6','Yes')" id="feedQ6_1">
+                                </div>
+                                <div class="questionare-divs">
+                                    <label for="feedQ6_2">b) No</label><input type="radio" name="feedQ6"
+                                        onclick="LabelColor('FeedL6','No')" id="feedQ6_2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-Container-Delivery-Form">
+                            <label id="FeedL7">7. How do you rate the overall experience with entire services
+                                Process?</label>
+                                <span id="FeedL7_value" style="display: none;"></span>
+
+                            <div class="questionare" id="startssec">
+                                <i class="fa-solid fa-star" name="stars" onclick="starSelected('1')"></i>
+                                <i class="fa-solid fa-star" name="stars" onclick="starSelected('2')"></i>
+                                <i class="fa-solid fa-star" name="stars" onclick="starSelected('3')"></i>
+                                <i class="fa-solid fa-star" name="stars" onclick="starSelected('4')"></i>
+                                <i class="fa-solid fa-star" name="stars" onclick="starSelected('5')"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-Container-Delivery-Form">
+                            <label for="FeedL8">Any Other Feedback</label>
+
+                            <div class="questionare">
+                                <textarea id="FeedL8" required></textarea>
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="form-Container-Delivery-Form-footer">
+                    <i class="fa-solid fa-rotate-right" id="resetingForm" style="display: none;" onclick="ResetExistingForm()"></i>
+                    <i class="fa-solid fa-circle-minus" id="circleCancell" onclick="skipingFeedback()"  style="display: none;"  ></i>
+                    <i class="fa-solid fa-forward-step" id="nextPageSection" onclick="NextPage()"></i>
+                    <input type="submit" id="submitbtnForm" value="Submit" disabled>
+                </div>
+            </form>
+            <i class="fa-solid fa-xmark" onclick="closeDelD()"></i>
         </div>
     </div>
 
