@@ -7,7 +7,7 @@
 
 body {
     background: #f2f2f2;
-    height: 100vh;
+    height: 100dvh;
     width: 100vw;
 }
 
@@ -157,7 +157,7 @@ main {
 .mainContent {
     width: 95vw;
     max-width: 2000px;
-    height: calc(100vh - 50px);
+    height: calc(100dvh - 50px);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
     position: absolute;
     left: 50%;
@@ -380,7 +380,7 @@ main {
 
 .advisorUpdate {
     width: 100%;
-    height: 90vh;
+    height: 90dvh;
     background-color: rgba(0, 0, 0, 0.2);
     position: absolute;
     z-index: 2;
@@ -411,7 +411,7 @@ main {
 .advisorUpdate .formboxBig {
     width: 90%;
     max-width: 500px;
-    height: 80vh;
+    height: 80dvh;
     background: rgba(255, 255, 255, 1);
     top: 50%;
     left: 50%;
@@ -435,7 +435,7 @@ main {
 
 .advisorUpdate .formboxBig form {
     position: relative;
-    height: calc(80vh - 40px);
+    height: calc(80dvh - 40px);
     width: 100%;
     max-width: 500px;
 }
@@ -518,7 +518,7 @@ main {
 .sectionForm{
     overflow: auto;
     width: 100%;
-    height: 70vh;
+    height: 70dvh;
     padding-bottom: 50px;
 }
 .paraGray {
@@ -660,7 +660,7 @@ table tr td {
     .HeaderPages ul {
         display: none;
         flex-direction: column;
-        height: calc(100vh - 40px);
+        height: calc(100dvh - 40px);
         gap: 0px;
         width: 250px;
         padding: 10px;
@@ -834,35 +834,27 @@ table tr td {
         color: white;
         max-width: 100px;
     }
-
     #PJCT_table tr td input,
     #PJCT_table tr td select {
         width: 45%;
         font-weight: normal;
-
     }
-
     #AdvisorChecking_tbody tr td input[type="button"],
     #PendD_tbody tr td input[type="button"] {
         background: #24A0ED;
         width: 45%;
         color: white;
     }
-
     .form-Container-update-Advisor input[type="submit"] {
         background: #24A0ED;
     }
-
     .form-Container-update-Advisor input[type="submit"]:hover {
         transform: translateX(-49%);
     }
-
     .submitTag {
         display: flex;
         justify-content: center;
-
     }
-
 }
 
 @media (max-width: 480px) {
