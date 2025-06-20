@@ -1,676 +1,312 @@
-function toggleMenu() {
-    var wind_width = window.innerWidth;
-    if (wind_width <= 1100) {
-        const menu = document.getElementById('navList');
-        if (menu.style.right !== '-250px') {
-            menu.style.right = '-250px';
-            setTimeout(() => {
-                menu.style.display = 'none';
-            }, 200);
+document.addEventListener("DOMContentLoaded", function () {
 
-        } else {
-            menu.style.display = 'flex';
-            setTimeout(() => {
-                menu.style.right = '0';
-            }, 200);
-        }
+    if (window.innerWidth > 900) {
+        document.body.innerHTML = "";
+
+        const msg = document.createElement('div');
+        msg.textContent = "This site only for mobile Devices.";
+        msg.style.textAlign = "center";
+        msg.style.padding = "50px";
+        msg.style.fontSize = "24px";
+        document.body.appendChild(msg);
     }
-}
-
-const headersPJC = ["Vehicle No", "Job Card", "JC Date", "Aging", "Customer Name", "Fuel Type", "Model", "Technician", "Status", "Remarks", "Date"];
-document.querySelectorAll("#PJCT_table tr").forEach(row => {
-    row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersPJC[i] + ':');
-    });
 });
+function getDateRange(rangeName) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-const headersRejAdv = ["Vehicle No", "Job Card", "JC Date", "Aging", "Customer Name", "Fuel Type", "Model", "Technician", "Status", "Remarks", "Date"];
-document.querySelectorAll("#RejAdv_table tr").forEach(row => {
-    row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersRejAdv[i] + ':');
-    });
-});
+    let fromDate = new Date(today);
+    let toDate = new Date(today);
 
-const headersTecW = ["Vehicle No", "Job Card", "Customer Name", "Contact", "Fuel Type", "Model", "Technician", "Start Time"];
-document.querySelectorAll("#technicianWorking_table tr").forEach(row => {
-    row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersTecW[i] + ':');
-    });
-});
+    const dayOfWeek = today.getDay();
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
 
-const headersUnderW = ["Vehicle No", "Job Card", "Customer Name", "Type", "Model", "Technician", "Start", "Pause", "Complete"];
-document.querySelectorAll("#underWorking_table tr").forEach(row => {
-    row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersUnderW[i] + ':');
-    });
-});
+    switch (rangeName) {
+        case 'Today':
+            break;
 
-const headersPendS = ["Vehicle No", "Job Card", "Customer Name", "Type", "Model", "Technician", "Status", "Remarks", "Exp Del date"];
-document.querySelectorAll("#pendingServices_table tr").forEach(row => {
-    row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersPendS[i] + ':');
-    });
-});
+        case 'Yesterday':
+            fromDate.setDate(today.getDate() - 1);
+            toDate = new Date(fromDate);
+            break;
 
-const headersRejS = ["Vehicle No", "Job Card", "Customer Name", "Type", "Model", "Technician", "Status", "Remarks", "Exp Del date"];
-document.querySelectorAll("#RejSer_table tr").forEach(row => {
-    row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersRejS[i] + ':');
-    });
-});
+        case 'Tomorrow':
+            fromDate.setDate(today.getDate() + 1);
+            toDate = new Date(fromDate);
+            break;
 
-const headersAdvC = ["Vehicle No", "Job Card", "Customer Name", "Technician", "Model", "Remarks", "Exp Del date", "Update"];
-document.querySelectorAll("#AdvisorChecking_table tr").forEach(row => {
-    row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersAdvC[i] + ':');
-    });
-});
+        case 'Last 3 Days':
+            fromDate.setDate(today.getDate() - 3);
+            toDate.setDate(today.getDate() -1 );
+            break;
 
-const headersCallPend = ["Vehicle No", "Job Card", "Customer Name", "Technician", "Model", "Remarks", "Exp Del date", "Update"];
-document.querySelectorAll("#CallPend_table tr").forEach(row => {
-    row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersCallPend[i] + ':');
-    });
-});
+        case 'This Week':
+            fromDate.setDate(today.getDate() + mondayOffset);
+            toDate.setDate(fromDate.getDate() + 6);
+            break;
 
-const headersPendD = ["Vehicle No", "Job Card", "Customer Name", "Mobile No", "Type", "Model", "Delivery Time", "Update"];
-document.querySelectorAll("#PendD_table tr").forEach(row => {
-    row.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headersPendD[i] + ':');
-    });
-});
+        case 'Next Week':
+            fromDate.setDate(today.getDate() + mondayOffset + 7); 
+            toDate.setDate(fromDate.getDate() + 6); 
+            break;
 
-function FilterPendingJobCard() {
-    var vehicleNo = document.getElementById('vehicleNoPJCT').value.toLowerCase();
-    var CustomerName = document.getElementById('CustomerNamePJCT').value.toLowerCase();
-    var ICEEV = document.getElementById('ICEEVPJCT').value.toLowerCase();
-    var Model = document.getElementById('ModelPJCT').value.toLowerCase();
-    var Technician = document.getElementById('TechnicianPJCT').value.toLowerCase();
-    var status = document.getElementById('statusPJCT').value.toLowerCase();
-    var JCnumPJCT = document.getElementById('JCnumPJCT').value.toLowerCase();
+        case 'Last Week':
+            fromDate.setDate(today.getDate() + mondayOffset - 7);
+            toDate.setDate(fromDate.getDate() + 6);
+            break;
 
-    var tbody = document.getElementById('PJCT_table');
-    var trs = tbody.getElementsByTagName('tr');
+        case 'This Month':
+            fromDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            toDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+            break;
 
-    for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        if (!tds.length) continue;
+        case 'Last Month':
+            fromDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+            toDate = new Date(today.getFullYear(), today.getMonth(), 0);
+            break;
+        case 'Upcoming':
+            fromDate.setDate(today.getDate() + 1);
+            toDate.setDate(fromDate.getDate() + 1000);
+            break;   
+            
+        case 'Left':
+            fromDate.setDate(fromDate.getDate() - 1000);
+            toDate.setDate(toDate.getDate() - 1);
+            break;      
 
-        var showRow = true;
-
-        if (vehicleNo && !tds[0].textContent.toLowerCase().includes(vehicleNo)) showRow = false;
-        if (CustomerName && !tds[4].textContent.toLowerCase().includes(CustomerName)) showRow = false;
-        if (ICEEV && !tds[5].textContent.toLowerCase().includes(ICEEV)) showRow = false;
-        if (Model && !tds[6].textContent.toLowerCase().includes(Model)) showRow = false;
-        if (Technician && !tds[7].getElementsByTagName('select')[0].value.toLowerCase().includes(Technician)) showRow = false;
-        if (status && !tds[8].getElementsByTagName('select')[0].value.toLowerCase().includes(status)) showRow = false;
-        if (JCnumPJCT && !tds[1].textContent.toLowerCase().includes(JCnumPJCT)) showRow = false;
-
-        trs[i].style.display = showRow ? '' : 'none';
+        default:
+            fromDate = 'na';
+            toDate = 'na';
+            break;
     }
+    return [fromDate, toDate];
 }
-
-
-function FiltertechnicianWorking() {
-    var vehicleNo = document.getElementById('tecwVehicleNo').value.toLowerCase();
-    var CustomerName = document.getElementById('tecwCusname').value.toLowerCase();
-    var ICEEV = document.getElementById('ICEEVtecW').value.toLowerCase();
-    var Model = document.getElementById('ModeltecW').value.toLowerCase();
-    var Technician = document.getElementById('TechnicianttecW').value.toLowerCase();
-    var tecwjcNum = document.getElementById('tecwjcNum').value.toLowerCase();
-
-    var tbody = document.getElementById('technicianWorking_table');
-    var trs = tbody.getElementsByTagName('tr');
-
-    for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        if (!tds.length) continue;
-
-        var showRow = true;
-
-        if (vehicleNo && !tds[0].textContent.toLowerCase().includes(vehicleNo)) showRow = false;
-        if (CustomerName && !tds[2].textContent.toLowerCase().includes(CustomerName)) showRow = false;
-        if (ICEEV && !tds[4].textContent.toLowerCase().includes(ICEEV)) showRow = false;
-        if (Model && !tds[5].textContent.toLowerCase().includes(Model)) showRow = false;
-        if (Technician && !tds[6].textContent.toLowerCase().includes(Technician)) showRow = false;
-        if (tecwjcNum && !tds[1].textContent.toLowerCase().includes(tecwjcNum)) showRow = false;
-        trs[i].style.display = showRow ? '' : 'none';
+function OpenloginInfoMenu() {
+    var menu = document.getElementsByClassName('login-info-menu')[0];
+    var barMenu = document.getElementsByClassName('fa-bars')[0];
+    var Sc_width = menu.style.left;
+    if (Sc_width === '-300px') {
+        menu.style.left = '0px';
+        barMenu.style.color = 'gray';
+        document.getElementsByClassName('filter-container')[0].style.right = '-300px';
+        document.getElementsByClassName('fa-filter')[0].style.color = '#008cff';
+    } else {
+        menu.style.left = '-300px';
+        barMenu.style.color = '#008cff';
     }
+    closeModal();
 }
-
-function FilterunderW() {
-    var vehicleNo = document.getElementById('underWVehicleNo').value.toLowerCase();
-    var ICEEVunderW = document.getElementById('ICEEVunderW').value.toLowerCase();
-    var ModelunderW = document.getElementById('ModelunderW').value.toLowerCase();
-    var underWJcNum = document.getElementById('underWJcNum').value.toLowerCase();
-    var techcianunderW = document.getElementById('techcianunderW').value.toLowerCase();
-
-    var tbody = document.getElementById('underWorking_tbody');
-    var trs = tbody.getElementsByTagName('tr');
-
-    for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        if (!tds.length) continue;
-
-        var showRow = true;
-
-        if (vehicleNo && !tds[0].textContent.toLowerCase().includes(vehicleNo)) showRow = false;
-        if (ICEEVunderW && !tds[3].textContent.toLowerCase().includes(ICEEVunderW)) showRow = false;
-        if (ModelunderW && !tds[4].textContent.toLowerCase().includes(ModelunderW)) showRow = false;
-        if (underWJcNum && !tds[1].textContent.toLowerCase().includes(underWJcNum)) showRow = false;
-        if (techcianunderW && !tds[5].textContent.toLowerCase().includes(techcianunderW)) showRow = false;
-
-        trs[i].style.display = showRow ? '' : 'none';
+function OpenFilter() {
+    var menu = document.getElementsByClassName('filter-container')[0];
+    var barMenu = document.getElementsByClassName('fa-filter')[0];
+    var Sc_width = menu.style.right;
+    if (Sc_width === '-300px') {
+        menu.style.right = '0px';
+        document.getElementsByClassName('login-info-menu')[0].style.left = '-300px';
+        document.getElementsByClassName('fa-bars')[0].style.color = '#008cff';
+        barMenu.style.color = 'gray';
+    } else {
+        menu.style.right = '-300px';
+        barMenu.style.color = '#008cff';
     }
-
+    closeModal();
 }
-function FilterPendS() {
-    var PendSVehicleNo = document.getElementById('PendSVehicleNo').value.toLowerCase();
-    var ICEEVPendS = document.getElementById('ICEEVPendS').value.toLowerCase();
-    var ModelPendS = document.getElementById('ModelPendS').value.toLowerCase();
-    var PendSJcNumber = document.getElementById('PendSJcNumber').value.toLowerCase();
-    var TechnicianPendS = document.getElementById('TechnicianPendS').value.toLowerCase();
+function FetchData() {
+    const icon = document.getElementsByClassName('fa-rotate')[0];
+    if (!icon) return;
+    closeModal()
 
-    var tbody = document.getElementById('pendingServices_tbody');
-    var trs = tbody.getElementsByTagName('tr');
+    icon.style.transition = 'transform 0.5s linear';
+    let angle = 0;
 
-    for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        if (!tds.length) continue;
+    const rotateInterval = setInterval(() => {
+        angle += 45;
+        icon.style.transform = `rotate(${angle}deg)`;
+    }, 100);
 
-        var showRow = true;
-
-        if (PendSVehicleNo && !tds[0].textContent.toLowerCase().includes(PendSVehicleNo)) showRow = false;
-        if (ICEEVPendS && !tds[3].textContent.toLowerCase().includes(ICEEVPendS)) showRow = false;
-        if (ModelPendS && !tds[4].textContent.toLowerCase().includes(ModelPendS)) showRow = false;
-        if (PendSJcNumber && !tds[1].textContent.toLowerCase().includes(PendSJcNumber)) showRow = false;
-        if (TechnicianPendS && !tds[5].textContent.toLowerCase().includes(TechnicianPendS)) showRow = false;
-
-        trs[i].style.display = showRow ? '' : 'none';
-    }
+    setTimeout(() => {
+        clearInterval(rotateInterval);
+        icon.style.transform = '';
+    }, 5000);
 }
+function NavPages(page) {
+    var planning = document.getElementById('planning-page');
+    var history = document.getElementById('history-page');
+    planning.style.display = 'none';
+    history.style.display = 'none';
 
-function FilterRejSer() {
-    var RejSerJCNum = document.getElementById('RejSerJCNum').value.toLowerCase();
-    var RejSerVehicleNo = document.getElementById('RejSerVehicleNo').value.toLowerCase();
-    var TechnicianRejSer = document.getElementById('TechnicianRejSer').value.toLowerCase();
-    var ModelRejSer = document.getElementById('ModelRejSer').value.toLowerCase();
+    var planing_menu = document.getElementById('planning-page_menu_nav');
+    var history_menu = document.getElementById('history-page_menu_nav');
+    planing_menu.classList.remove('active');
+    history_menu.classList.remove('active');
 
-    var tbody = document.getElementById('RejSer_tbody');
-    var trs = tbody.getElementsByTagName('tr');
+    var planning_filter = document.getElementById('planning-page-filter');
+    var history_filter = document.getElementById('history-page-filter');
+    planning_filter.style.display = 'none';
+    history_filter.style.display = 'none';
 
-    for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        if (!tds.length) continue;
-
-        var showRow = true;
-
-        if (RejSerJCNum && !tds[1].textContent.toLowerCase().includes(RejSerJCNum)) showRow = false;
-        if (RejSerVehicleNo && !tds[0].textContent.toLowerCase().includes(RejSerVehicleNo)) showRow = false;
-        if (TechnicianRejSer && !tds[5].textContent.toLowerCase().includes(TechnicianRejSer)) showRow = false;
-        if (ModelRejSer && !tds[4].textContent.toLowerCase().includes(ModelRejSer)) showRow = false;
-
-        trs[i].style.display = showRow ? '' : 'none';
-    }
-}
-
-function FilterAdvC() {
-    var AdvCVehicleNo = document.getElementById('AdvCVehicleNo').value.toLowerCase();
-    var TechnicianAdvC = document.getElementById('TechnicianAdvC').value.toLowerCase();
-    var ModelAdvC = document.getElementById('ModelAdvC').value.toLowerCase();
-    var AdvCJcNum = document.getElementById('AdvCJcNum').value.toLowerCase();
-
-    var tbody = document.getElementById('AdvisorChecking_tbody');
-    var trs = tbody.getElementsByTagName('tr');
-
-    for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        if (!tds.length) continue;
-
-        var showRow = true;
-
-        if (AdvCVehicleNo && !tds[0].textContent.toLowerCase().includes(AdvCVehicleNo)) showRow = false;
-        if (TechnicianAdvC && !tds[3].textContent.toLowerCase().includes(TechnicianAdvC)) showRow = false;
-        if (ModelAdvC && !tds[4].textContent.toLowerCase().includes(ModelAdvC)) showRow = false;
-        if (AdvCJcNum && !tds[1].textContent.toLowerCase().includes(AdvCJcNum)) showRow = false;
-
-        trs[i].style.display = showRow ? '' : 'none';
-    }
-}
-
-
-function FilterCallPend() {
-    var CallPendJcNu = document.getElementById('CallPendJcNu').value.toLowerCase();
-    var CallPendVehicleNo = document.getElementById('CallPendVehicleNo').value.toLowerCase();
-    var TechnicianCallPend = document.getElementById('TechnicianCallPend').value.toLowerCase();
-    var ModelCallPend = document.getElementById('ModelCallPend').value.toLowerCase();
-
-    var tbody = document.getElementById('CallPend_tbody');
-    var trs = tbody.getElementsByTagName('tr');
-
-    for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        if (!tds.length) continue;
-
-        var showRow = true;
-
-        if (CallPendJcNu && !tds[1].textContent.toLowerCase().includes(CallPendJcNu)) showRow = false;
-        if (CallPendVehicleNo && !tds[0].textContent.toLowerCase().includes(CallPendVehicleNo)) showRow = false;
-        if (TechnicianCallPend && !tds[3].textContent.toLowerCase().includes(TechnicianCallPend)) showRow = false;
-        if (ModelCallPend && !tds[4].textContent.toLowerCase().includes(ModelCallPend)) showRow = false;
-
-        trs[i].style.display = showRow ? '' : 'none';
-    }
-}
-
-function closeAdvisorUpdate() {
-    document.getElementsByClassName('advisorUpdate')[0].style.display = 'none'
-}
-function openAdvisorUpdate(jcNo) {
-    document.getElementsByClassName('advisorUpdate')[0].style.display = '';
-    var inputtag = document.getElementById('JcNumberAdvUpdate');
-    inputtag.value = jcNo;
-    inputtag.setAttribute('disabled', true)
-    document.getElementById('paramUpdateAction1').style.display = 'none';
-    document.getElementById('paramUpdateAction2').style.display = 'none';
-    document.getElementById('paramUpdateAction3').style.display = 'none';
-    var inputtag1 = document.getElementById('WAintegrationAdvUpdate');
-    var inputtag2 = document.getElementById('calledtoClientAdvUpdate');
-    var inputtag3 = document.getElementById('ExpdateAdvUpdate');
-    inputtag1.value = '';
-    inputtag2.value = '';
-    inputtag3.value = '';
-    document.getElementById('StatusAdvUpdate').value = '';
-}
-function Navpages(page) {
-    var homePage = document.getElementById('homePage');
-    var PendingJob = document.getElementById('PendingJob');
-    var TechnicianWorking = document.getElementById('TechnicianWorking');
-    var UnderWorking = document.getElementById('UnderWorking');
-    var PendingServices = document.getElementById('PendingServices');
-    var AdvisorChecking = document.getElementById('AdvisorChecking');
-    var AdvisorPendingDelivery = document.getElementById('AdvisorPendingDelivery');
-    var RejectedAdvisor = document.getElementById('RejectedAdvisor');
-    var RejectedServices = document.getElementById('RejectedServices');
-    var CallPending = document.getElementById('CallPending');
-
-    homePage.style.display = 'none';
-    PendingJob.style.display = 'none';
-    TechnicianWorking.style.display = 'none';
-    UnderWorking.style.display = 'none';
-    PendingServices.style.display = 'none';
-    AdvisorChecking.style.display = 'none';
-    AdvisorPendingDelivery.style.display = 'none';
-    RejectedAdvisor.style.display = 'none';
-    RejectedServices.style.display = 'none';
-    CallPending.style.display = 'none';
-
-    document.getElementById('homePage' + 'nav').classList.remove('active');
-    document.getElementById('PendingJob' + 'nav').classList.remove('active');
-    document.getElementById('TechnicianWorking' + 'nav').classList.remove('active');
-    document.getElementById('UnderWorking' + 'nav').classList.remove('active');
-    document.getElementById('PendingServices' + 'nav').classList.remove('active');
-    document.getElementById('AdvisorChecking' + 'nav').classList.remove('active');
-    document.getElementById('AdvisorPendingDelivery' + 'nav').classList.remove('active');
-    document.getElementById('RejectedAdvisor' + 'nav').classList.remove('active');
-    document.getElementById('RejectedServices' + 'nav').classList.remove('active');
-    document.getElementById('CallPending' + 'nav').classList.remove('active');
+    document.getElementsByClassName('login-info-menu')[0].style.left = '-300px';
+    document.getElementsByClassName('fa-bars')[0].style.color = '#008cff';
+    document.getElementsByClassName('filter-container')[0].style.right = '-300px';
+    document.getElementsByClassName('fa-filter')[0].style.color = '#008cff';
 
     document.getElementById(page).style.display = '';
-    document.getElementById(page + 'nav').classList.add('active');
-    toggleMenu();
-}
-
-document.getElementById('myform').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var userid = document.getElementById('userid-log').value;
-    var passwordlog = document.getElementById('password-log').value;
-    if (userid == '10069' && passwordlog == '1242') {
-        document.getElementById('login-page').style.display = 'none'
-        document.getElementById('mainPage').style.display = '';
-        document.getElementById('myform').reset();
-        Navpages('homePage');
-        toggleMenu();
+    document.getElementById(page + '_menu_nav').classList.add('active');
+    document.getElementById(page + '-filter').style.display = '';
+    if (page == "planning-page") {
+        var name = 'Planning Report';
+        document.getElementById('filter_applied_plan').style.display = '';
+        document.getElementById('filter_applied_his').style.display = 'none';
     } else {
-        document.getElementById('login-page-cred').style.display = '';
+        var name = 'History Report';
+        document.getElementById('filter_applied_plan').style.display = 'none';
+        document.getElementById('filter_applied_his').style.display = '';
     }
-});
+    document.getElementById('pageName').innerHTML = name;
+    closeModal();
+}
+function closeModal() {
+    document.getElementsByClassName('modal-Box')[0].style.left = '-100dvh';
+    document.getElementsByClassName('modal-Box')[1].style.left = '-100dvh';
+    document.getElementsByClassName('modal-Box')[2].style.left = '-100dvh';
+}
+function openModalPendinginfo(partyName, page) {
+    document.getElementsByClassName('modal-Box')[0].style.left = '0';
+    if (page == 'History') {
+        document.getElementsByClassName('update-modal')[0].style.display = 'none';
+    } else {
+        document.getElementsByClassName('update-modal')[0].style.display = '';
+    }
+}
+function updateForm(trackingId) {
+    document.getElementsByClassName('modal-Box')[1].style.left = '0';
+}
+function ChangePassword() {
+    OpenloginInfoMenu();
+    document.getElementsByClassName('modal-Box')[2].style.left = '0';
+}
+document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var userID = document.getElementById('userID').value;
+    var password = document.getElementById('password').value;
+    if (userID == '10069' && password == '1242') {
+        document.getElementsByClassName('login-Container')[0].style.display = 'none'
+        document.getElementsByTagName('main')[0].style.display = '';
+        NavPages('planning-page');
+    } else {
+        document.getElementById('login-Message').style.display = '';
+    }
+})
 function logout() {
-    document.getElementById('login-page').style.display = '';
-    document.getElementById('mainPage').style.display = 'none';
+    document.getElementsByClassName('login-Container')[0].style.display = ''
+    document.getElementsByTagName('main')[0].style.display = 'none';
+    document.getElementById('login-Message').style.display = 'none';
+    document.getElementById('userID').value = '';
+    document.getElementById('password').value = '';
 }
-function startingFunction(jcNo) {
-    var trs_underWorking = document.getElementById('underWorking_tbody').getElementsByTagName('tr');
-    var tech = '';
-    for (let i = 0; i < trs_underWorking.length; i++) {
-        var tds = trs_underWorking[i].getElementsByTagName('td');
-        var jcnum_td = tds[1].innerHTML;
-        if (jcnum_td == jcNo) {
-            tech = tds[5].innerHTML;
-        }
-    }
-    for (let i = 0; i < trs_underWorking.length; i++) {
-        var tds = trs_underWorking[i].getElementsByTagName('td');
-        var jcnum_td = tds[1].innerHTML;
-        var tech_td = tds[5].innerHTML;
-
-        if (jcnum_td !== jcNo && tech == tech_td) {
-            trs_underWorking[i].style.display = 'none';
-        } else if (jcnum_td == jcNo) {
-            tds[6].getElementsByTagName('input')[0].style.display = 'none'
-            tds[7].getElementsByTagName('input')[0].style.display = 'block'
-            tds[8].getElementsByTagName('input')[0].style.display = 'block'
-        }
-    }
+function resetPlanningFilter() {
+    document.getElementById('PartyNamefilterplanning').value = '';
+    document.getElementById('CurrentStatusfilterplanning').value = '';
+    document.getElementById('priorityfilterplanning').value = '';
+    PlanningFilter('reset');
 }
-function PausingFunction(jcNo) {
-    document.getElementsByClassName('advisorUpdate')[1].style.display = '';
-    var inputID = document.getElementById('JcNumberpauseReasons');
-    inputID.value = jcNo;
-    inputID.setAttribute('disabled', true);
-}
-document.getElementById('pauseReasons').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var jcNo = document.getElementById('JcNumberpauseReasons').value;
-    var trs_underWorking = document.getElementById('underWorking_tbody').getElementsByTagName('tr');
-    var tech = '';
-    for (let i = 0; i < trs_underWorking.length; i++) {
-        var tds = trs_underWorking[i].getElementsByTagName('td');
-        var jcnum_td = tds[1].innerHTML;
-        if (jcnum_td == jcNo) {
-            tech = tds[5].innerHTML;
-        }
-    }
-    for (let i = 0; i < trs_underWorking.length; i++) {
-        var tds = trs_underWorking[i].getElementsByTagName('td');
-        var jcnum_td = tds[1].innerHTML;
-        var tech_td = tds[5].innerHTML;
+function PlanningFilter(type) {
+    var partyName_fil = document.getElementById('PartyNamefilterplanning').value.trim();
+    var curStatus_fil = document.getElementById('CurrentStatusfilterplanning').value.trim();
+    var Priority_fil = document.getElementById('priorityfilterplanning').value.trim();
 
-        if (tech == tech_td) {
-            trs_underWorking[i].style.display = '';
-            tds[6].getElementsByTagName('input')[0].style.display = 'block';
-            tds[7].getElementsByTagName('input')[0].style.display = 'none';
-            tds[8].getElementsByTagName('input')[0].style.display = 'none';
-        }
-    }
-    document.getElementsByClassName('advisorUpdate')[1].style.display = 'none';
-    document.getElementById('pauseReasons').reset();
-})
-function closePauseReasons() {
-    document.getElementsByClassName('advisorUpdate')[1].style.display = 'none';
-}
+    var trs = document.getElementById('planning-page').getElementsByClassName('Container-details');
+    var months_data = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
+    var filterApplied = false;
 
-function CompleteFunction(jcNo) {
-    var trs_underWorking = document.getElementById('underWorking_tbody').getElementsByTagName('tr');
-    var tech = '';
-    for (let i = 0; i < trs_underWorking.length; i++) {
-        var tds = trs_underWorking[i].getElementsByTagName('td');
-        var jcnum_td = tds[1].innerHTML;
-        if (jcnum_td == jcNo) {
-            tech = tds[5].innerHTML;
-        }
-    }
-    for (let i = 0; i < trs_underWorking.length; i++) {
-        var tds = trs_underWorking[i].getElementsByTagName('td');
-        var jcnum_td = tds[1].innerHTML;
-        var tech_td = tds[5].innerHTML;
-
-        if (tech == tech_td) {
-            trs_underWorking[i].style.display = '';
-            tds[6].getElementsByTagName('input')[0].style.display = 'block';
-            tds[7].getElementsByTagName('input')[0].style.display = 'none';
-            tds[8].getElementsByTagName('input')[0].style.display = 'none';
-        }
-    }
-}
-function AdvisorUpdateSubmitParam() {
-    var values = document.getElementById('StatusAdvUpdate').value;
-    var inputtag1 = document.getElementById('WAintegrationAdvUpdate');
-    var inputtag2 = document.getElementById('calledtoClientAdvUpdate');
-    inputtag1.value = '';
-    inputtag2.value = '';
-
-    if (values == 'Yes') {
-        document.getElementById('paramUpdateAction1').style.display = '';
-        document.getElementById('paramUpdateAction2').style.display = '';
-
-        inputtag1.setAttribute('required', true);
-        inputtag2.setAttribute('required', true);
-
-    } else {
-        document.getElementById('paramUpdateAction1').style.display = 'none';
-        document.getElementById('paramUpdateAction2').style.display = 'none';
-
-        inputtag1.removeAttribute('required');
-        inputtag2.removeAttribute('required');
-    }
-}
-function CalledtoCusSubmitParam() {
-    var values = document.getElementById('calledtoClientAdvUpdate').value;
-    var inputtag3 = document.getElementById('ExpdateAdvUpdate');
-    inputtag3.value = '';
-
-    if (values == 'Yes') {
-        document.getElementById('paramUpdateAction3').style.display = '';
-        inputtag3.setAttribute('required', true);
-    } else {
-        document.getElementById('paramUpdateAction3').style.display = 'none';
-        inputtag3.removeAttribute('required');
-    }
-}
-document.getElementById('updateLines_AdvisorApproval').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var jcNum = document.getElementById('JcNumberAdvUpdate').value;
-    var approvalStatus = document.getElementById('StatusAdvUpdate').value;
-    var whatsappRequired = document.getElementById('WAintegrationAdvUpdate').value;
-    var calledStatus = document.getElementById('calledtoClientAdvUpdate').value;
-    var delTime = document.getElementById('ExpdateAdvUpdate').value;
-    console.log([jcNum, approvalStatus, whatsappRequired, calledStatus, delTime])
-    document.getElementsByClassName('advisorUpdate')[0].style.display = 'none';
-
-    var trs = document.getElementById('AdvisorChecking_tbody').getElementsByTagName('tr');
+    var DateRange = getDateRange(Priority_fil); 
+    var hasDateRange = DateRange && DateRange[0] instanceof Date && DateRange[1] instanceof Date;
     for (let i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td')[1];
-        if (tds.innerHTML == jcNum) {
-            trs[i].style.display = 'none';
+        let status = true;
+        var partyName = trs[i].querySelector('.Container-top-left p')?.innerText || '';
+        if (partyName_fil && !partyName.toLowerCase().includes(partyName_fil.toLowerCase())) {
+            status = false;
         }
-    }
-})
-function FilterPendD() {
-    const vehicleNoFilter = document.getElementById("PendDVehicleNo").value.toUpperCase();
-    const typeFilter = document.getElementById("ICEEVPendD").value.toUpperCase();
-    const modelFilter = document.getElementById("ModelPendD").value.toUpperCase();
-
-    const table = document.getElementById("PendD_table");
-    const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-
-    for (let i = 0; i < rows.length; i++) {
-        const cells = rows[i].getElementsByTagName("td");
-        const vehicleNo = cells[0].textContent.toUpperCase();
-        const type = cells[3].textContent.toUpperCase();
-        const model = cells[4].textContent.toUpperCase();
-
-        const matchesVehicleNo = vehicleNo.includes(vehicleNoFilter);
-        const matchesType = !typeFilter || type === typeFilter;
-        const matchesModel = !modelFilter || model === modelFilter;
-
-        if (matchesVehicleNo && matchesType && matchesModel) {
-            rows[i].style.display = "";
-        } else {
-            rows[i].style.display = "none";
+        var curStatus = trs[i].querySelector('.Container-bottom-right p')?.innerText || '';
+        if (curStatus_fil && !curStatus.toLowerCase().includes(curStatus_fil.toLowerCase())) {
+            status = false;
         }
-    }
-}
-function updateValue_DelF() {
-    var chec = document.getElementById('DelF_delivery');
-    if (chec.checked) {
-        chec.value = 'Delivered';
-    } else {
-        chec.value = '';
-    }
-}
-function LabelColor(label, status) {
-    var labelTag = document.getElementById(label);
-    if (status == "Yes") {
-        labelTag.style.color = 'Green';
-    } else {
-        labelTag.style.color = 'red';
-    }
-}
-function starSelected(number) {
-    var stars = document.getElementsByName('stars');
-    const col_pat = ['#B71C1C', '#EF6C00', '#F9A825', '#7CB342', '#2E7D32'];
-    document.getElementById('FeedL7_value').innerHTML = number;
-    for (let i = 1; i <= 5; i++) {
-        if (i <= number) {
-            stars[(i - 1)].style.color = col_pat[(i - 1)];
-            document.getElementById('FeedL7').style.color = col_pat[(i - 1)];
-        } else {
-            stars[(i - 1)].style.color = 'gray';
+        var dateParts = trs[i].querySelector('.Container-bottom-left p:nth-child(4)')?.innerText.split('-');
+        if (dateParts && dateParts.length === 3) {
+            let day = parseInt(dateParts[0], 10);
+            let month = months_data[dateParts[1]];
+            let year = parseInt(dateParts[2], 10);
+            let rowDate = new Date(year, month, day);
+            rowDate.setHours(0, 0, 0, 0);
+
+            if (hasDateRange && (rowDate < DateRange[0] || rowDate > DateRange[1])) {
+                status = false;
+            }
         }
+        trs[i].style.display = status ? '' : 'none';
+        if (!status) filterApplied = true;
     }
-}
-function NextPage() {
-    var chec = document.getElementById('DelF_delivery');
-    if (chec.checked) {
-        var sectionForm = document.getElementsByClassName('sectionForm');
-        sectionForm[0].style.display = 'none';
-        sectionForm[1].style.display = '';
-        document.getElementById('circleCancell').style.display = '';
-        document.getElementById('resetingForm').style.display = '';
-        document.getElementById('nextPageSection').style.display = 'none';
-        document.getElementById('submitbtnForm').removeAttribute('disabled');
-        document.getElementById('formType').innerHTML = 'Customer Feedback Form';
-        document.getElementById('skippedFeedBack').innerHTML = '';
-    } else {
-        alert('Please Select Delivery before Proceed')
+    if (type !== 'reset') {
+        OpenFilter(); 
     }
+    document.getElementById('filter_applied_plan').innerText = filterApplied ? 'Filtered' : '';
 }
-function ResetExistingForm() {
-    var form = document.getElementById('DeliveryForm')
-    form.reset();
-    document.getElementById('circleCancell').style.display = 'none';
-    document.getElementById('resetingForm').style.display = 'none';
-    document.getElementById('nextPageSection').style.display = '';
-    document.getElementById('submitbtnForm').setAttribute('disabled', true);
-    var label = form.getElementsByTagName('label');
-    var sectionForm = document.getElementsByClassName('sectionForm');
-    sectionForm[1].style.display = 'none';
-    sectionForm[0].style.display = '';
-    document.getElementById('skippedFeedBack').innerHTML = '';
-    document.getElementById('FeedL8').setAttribute('required', true);
-    var iTag = document.getElementById('startssec').getElementsByTagName('i');
-    document.getElementById('formType').innerHTML = 'Delivery Form';
-    for (let i = 0; i < iTag.length; i++) {
-        iTag[i].style.color = 'gray';
+function resetPanel_pen(){
+    resetPlanningFilter();
+    PlanningFilter('reset');
+}
+
+function resetHistoryFilter() {
+    document.getElementById('PartyNamefilterhistory').value = '';
+    document.getElementById('CurrentStatusfilterhistory').value = '';
+    document.getElementById('priorityfilterhistory').value = '';
+    HistoryFilter('reset');
+}
+function HistoryFilter(type) {
+    var partyName_fil = document.getElementById('PartyNamefilterhistory').value.trim();
+    var curStatus_fil = document.getElementById('CurrentStatusfilterhistory').value.trim();
+    var Priority_fil = document.getElementById('priorityfilterhistory').value.trim();
+    var trs = document.getElementById('history-page').getElementsByClassName('Container-details');
+    var filterApplied = false;
+    var months_data = {
+        Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+        Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+    };
+    var DateRange = getDateRange(Priority_fil); 
+    var hasDateRange = DateRange && DateRange[0] instanceof Date && DateRange[1] instanceof Date;
+    for (let i = 0; i < trs.length; i++) {
+        let status = true;
+        var partyName = trs[i].querySelector('.Container-top-left p')?.innerText || '';
+        if (partyName_fil && !partyName.toLowerCase().includes(partyName_fil.toLowerCase())) {
+            status = false;
+        }
+        var curStatus = trs[i].querySelector('.Container-bottom-left p:nth-child(3)')?.innerText || '';
+        if (curStatus_fil && !curStatus.toLowerCase().includes(curStatus_fil.toLowerCase())) {
+            status = false;
+        }
+        var dateStr = trs[i].querySelector('.Container-bottom-left p:nth-child(2)')?.innerText || '';
+        var dateParts = dateStr.split('-');
+        if (dateParts.length === 3 && hasDateRange) {
+            let day = parseInt(dateParts[0], 10);
+            let month = months_data[dateParts[1]];
+            let year = parseInt(dateParts[2], 10);
+
+            let rowDate = new Date(year, month, day);
+            rowDate.setHours(0, 0, 0, 0);
+
+            if (rowDate < DateRange[0] || rowDate > DateRange[1]) {
+                status = false;
+            }
+        }
+        trs[i].style.display = status ? '' : 'none';
+        if (!status) filterApplied = true;
     }
-    for (let i = 0; i < label.length; i++) {
-        label[i].style.color = 'gray';
+    if (type !== 'reset') {
+        OpenFilter();
     }
+    document.getElementById('filter_applied_his').innerText = filterApplied ? 'Filtered' : '';
 }
-function skipingFeedback() {
-    var sectionForm = document.getElementsByClassName('sectionForm');
-    sectionForm[0].style.display = '';
-    sectionForm[1].style.display = 'none';
-    document.getElementById('FeedL8').removeAttribute('required');
-    document.getElementById('circleCancell').style.display = 'none';
-    document.getElementById('formType').innerHTML = 'Delivery Form';
-    document.getElementById('skippedFeedBack').innerHTML = 'Skipped';
-}
-function closeDelD() {
-    document.getElementsByClassName('advisorUpdate')[2].style.display = 'none';
-}
-function PendDUpdate(jcNo) {
-    document.getElementsByClassName('advisorUpdate')[2].style.display = '';
-    document.getElementById('JcNumberDelD').innerHTML = jcNo;
-    ResetExistingForm();
-}
-document.getElementById('DeliveryForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var JcNo = Number(document.getElementById('JcNumberDelD').innerHTML);
-    var status = document.getElementById('DelF_delivery').value;
-    var skipStatus = document.getElementById('skippedFeedBack').innerHTML;
-
-    var feedQ1_value = '';
-    var feedQ1 = document.getElementsByName('feedQ1');
-    if (feedQ1[0].checked) { feedQ1_value = 'Yes' } else if (feedQ1[1].checked) { feedQ1_value = 'No' };
-
-    var feedQ2_value = '';
-    var feedQ2 = document.getElementsByName('feedQ2');
-    if (feedQ2[0].checked) { feedQ2_value = 'Yes' } else if (feedQ2[1].checked) { feedQ2_value = 'No' };
-
-    var feedQ3_value = '';
-    var feedQ3 = document.getElementsByName('feedQ3');
-    if (feedQ3[0].checked) { feedQ3_value = 'Yes' } else if (feedQ3[1].checked) { feedQ3_value = 'No' };
-
-    var feedQ4_value = '';
-    var feedQ4 = document.getElementsByName('feedQ4');
-    if (feedQ4[0].checked) { feedQ4_value = 'Yes' } else if (feedQ4[1].checked) { feedQ4_value = 'No' };
-
-    var feedQ5_value = '';
-    var feedQ5 = document.getElementsByName('feedQ5');
-    if (feedQ5[0].checked) { feedQ5_value = 'Yes' } else if (feedQ5[1].checked) { feedQ5_value = 'No' };
-
-    var feedQ6_value = '';
-    var feedQ6 = document.getElementsByName('feedQ6');
-    if (feedQ6[0].checked) { feedQ6_value = 'Yes' } else if (feedQ6[1].checked) { feedQ6_value = 'No' };
-
-    var FeedL7_value = document.getElementById('FeedL7_value').innerHTML;
-
-    var FeedL8_value = document.getElementById('FeedL8').value
-
-    if (skipStatus == "Skipped") {
-        feedQ1_value = skipStatus; 
-        feedQ2_value = skipStatus; 
-        feedQ3_value = skipStatus; 
-        feedQ4_value = skipStatus; 
-        feedQ5_value = skipStatus; 
-        feedQ6_value = skipStatus; 
-        FeedL7_value = skipStatus; 
-        FeedL8_value = skipStatus;
-    }
-
-    if (feedQ1_value == "" || feedQ2_value == "" || feedQ3_value == "" || feedQ4_value == "" || feedQ5_value == "" || feedQ6_value == "" || FeedL7_value == "" || FeedL8_value == "") {
-        alert('Please Fill Necessary Fields')
-    } else {
-        ResetExistingForm();
-        document.getElementsByClassName('advisorUpdate')[2].style.display = 'none';
-        console.log(JcNo, status, feedQ1_value, feedQ2_value, feedQ3_value, feedQ4_value, feedQ5_value, feedQ6_value, FeedL7_value, FeedL8_value)
-    }
-})
-function callAdvisorUpdate(jcNo) {
-    var input = document.getElementById('JcNumberCallUpdate');
-    input.value = jcNo;
-    input.setAttribute('disabled', true);
-    document.getElementsByClassName('advisorUpdate')[3].style.display = '';
-}
-function closeCallUpdate() {
-    document.getElementsByClassName('advisorUpdate')[3].style.display = 'none';
-}
-function FilterRejAdv() {
-    var vehicleNo = document.getElementById('vehicleNoRejAdv').value.toLowerCase();
-    var CustomerName = document.getElementById('CustomerNameRejAdv').value.toLowerCase();
-    var ICEEV = document.getElementById('ICEEVRejAdv').value.toLowerCase();
-    var Model = document.getElementById('ModelRejAdv').value.toLowerCase();
-    var Technician = document.getElementById('TechnicianRejAdv').value.toLowerCase();
-    var status = document.getElementById('statusRejAdv').value.toLowerCase();
-    var JCnumPJCT = document.getElementById('JCnumRejAdv').value.toLowerCase();
-
-    var tbody = document.getElementById('RejAdv_table');
-    var trs = tbody.getElementsByTagName('tr');
-
-    for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        if (!tds.length) continue;
-        var showRow = true;
-        if (vehicleNo && !tds[0].textContent.toLowerCase().includes(vehicleNo)) showRow = false;
-        if (CustomerName && !tds[4].textContent.toLowerCase().includes(CustomerName)) showRow = false;
-        if (ICEEV && !tds[5].textContent.toLowerCase().includes(ICEEV)) showRow = false;
-        if (Model && !tds[6].textContent.toLowerCase().includes(Model)) showRow = false;
-        if (Technician && !tds[7].getElementsByTagName('select')[0].value.toLowerCase().includes(Technician)) showRow = false;
-        if (status && !tds[8].getElementsByTagName('select')[0].value.toLowerCase().includes(status)) showRow = false;
-        if (JCnumPJCT && !tds[1].textContent.toLowerCase().includes(JCnumPJCT)) showRow = false;
-
-        trs[i].style.display = showRow ? '' : 'none';
-    }
+function resetPanel_his(){
+    resetHistoryFilter();
+    HistoryFilter('reset');
 }
